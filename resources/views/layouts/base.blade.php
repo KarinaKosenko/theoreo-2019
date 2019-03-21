@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="{{ app()->getLocale() }}">
 <head>
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta charset="UTF-8">
@@ -8,6 +8,7 @@
     <meta name="kywords" content="">
     <meta name="description" content="">
     <meta name="author" content="parapix.ru">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <meta property="og:site_name" content="Froggle"/>
     <meta property="og:title" content="Froggle - сайт скидок" />
@@ -29,6 +30,8 @@
 
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
+    @stack('styles')
+    @stack('head-scripts')
 </head>
 <body>
 <noscript>
@@ -40,21 +43,50 @@
         </div>
     </div>
 </noscript>
-
-@include('blocks.header')
+    @section('header')
+        <header class="header anim js-header">
+        <div class="wrapper">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    @include('blocks.header')
+                    @include('modals.modal-city')
+                    @include('widgets.search_form')
+                </div>
+                    @include('widgets.cat')
+            </div>
+        </div>
+        </header>
+    @show
 
 <main class="main" role="main">
     <div class="wrapper">
-        @yield('content')
+        <div class="container-fluid">
+
+            @section('sort_cat')
+                @include('widgets.sort_categoty')
+            @show
+
+            @yield('content')
+
+           {{-- @section('action_info')
+                @include('widgets.action_info')
+            @show--}}
+
+            @section('button_load')
+                @include('widgets.button_loader')
+            @show
+        </div>
     </div>
 </main>
 
 @include('blocks.footer')
+@include('modals.modal_footer')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
 <script src="{{asset('js/main.min.js')}}"></script>
-
+<script src="{{asset('js/main.js')}}"></script>
+@stack('botton-scripts')
 </body>
 </html>

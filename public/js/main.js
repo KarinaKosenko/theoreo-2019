@@ -90,16 +90,15 @@ $(document).ready(function() {
 
 * Block accorgion page category
 */
-
     $(".all").change(function() {
         if(this.checked) {
             $(".accordion").show();
-        }
-        else
-        {
+            }else
+                {
             $(".accordion").hide();
         }
     })
+
 
 
 var $carousel = $('.carousel');

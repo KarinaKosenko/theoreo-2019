@@ -10,21 +10,21 @@ class HomeController extends Controller
    public function index()
    {
 
-       return view('blocks.home');
+       return view('posts.home');
    }
 
     public function show()
     {
-        return view('blocks.category');
+        return view('posts.category');
     }
 
     public function action()
     {
-        return view('blocks.action');
+        return view('posts.action');
     }
 
     public function brand()
     {
-        return view('blocks.brand');
+        return view('posts.brand');
     }
 }
