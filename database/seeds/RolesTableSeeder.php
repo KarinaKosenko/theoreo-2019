@@ -13,14 +13,15 @@ class RolesTableSeeder extends Seeder
     public function run()
     {
         $roles = [
-            'admin',
-            'moderator',
-            'supermiderator',
-            'quest'
+            ['Администратор', 'admin'],
+            ['Модератор', 'moderator'],
+            ['Супермодератор', 'supermiderator'],
+            ['Гость', 'quest']
         ];
         foreach ($roles as $role) {
             DB::table('roles')->insert([
-                'role_name' => $role,
+                'name' => $role[0],
+                'code' => $role[1],
             ]);
         }
 

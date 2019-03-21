@@ -12,7 +12,7 @@ class PermissionRoleTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1;$i<7;$i++)
+        for ($i=1;$i<6;$i++)
         {
             DB::table('permission_role')->insert([
                 'role_id' => '1',

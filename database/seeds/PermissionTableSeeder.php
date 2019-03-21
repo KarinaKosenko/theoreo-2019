@@ -12,19 +12,18 @@ class PermissionTableSeeder extends Seeder
      */
     public function run()
     {
-        $permissions=[
-            'Brand',
-            'Action',
-            'Moderation',
-            'Users',
-            'Moderation',
-            'Panel',
+        $permissions = [
+            ['Бренды', 'Brand'],
+            ['Акции', 'Action'],
+            ['Модерация', 'Moderation'],
+            ['Пользователи', 'Users'],
+            ['Доступ к панели', 'Panel'],
         ];
 
-        foreach ($permissions as $permission)
-        {
+        foreach ($permissions as $permission) {
             DB::table('permissions')->insert([
-                'permission_name' => $permission,
+                'name' => $permission[0],
+                'code' => $permission[1],
             ]);
         }
     }
