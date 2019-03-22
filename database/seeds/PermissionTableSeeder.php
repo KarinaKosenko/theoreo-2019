@@ -13,11 +13,12 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = [
-            ['Бренды', 'Brand'],
-            ['Акции', 'Action'],
-            ['Модерация', 'Moderation'],
-            ['Пользователи', 'Users'],
-            ['Доступ к панели', 'Panel'],
+            ['Администрирование', 'admin.admin_panel'],
+            ['Управление брендами', 'admin.actions_section'],
+            ['Модерация контента', 'admin.content_moderation_section'],
+            ['Управление пользователями', 'admin.users_section'],
+            ['Поисковые запросы', 'admin.search_queries_section'],
+            ['Логи парсера', 'admin.parser_logs_section'],
         ];
 
         foreach ($permissions as $permission) {

@@ -15,8 +15,8 @@ class RolesTableSeeder extends Seeder
         $roles = [
             ['Администратор', 'admin'],
             ['Модератор', 'moderator'],
-            ['Супермодератор', 'supermiderator'],
-            ['Гость', 'quest']
+            ['Клиент', 'brand'],
+            ['Обычный пользователь', 'quest']
         ];
         foreach ($roles as $role) {
             DB::table('roles')->insert([
