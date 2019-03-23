@@ -2,7 +2,7 @@
 @section('page-auth')
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="{{ route('admin.main.index') }}"><b>Admin</b>LTE</a>
         </div>
 
         <div class="register-box-body">
@@ -49,7 +49,7 @@
                     Google+</a>
             </div>
 
-            <a href="admin/login" class="text-center">I already have a membership</a>
+            <a href="{{ route('admin.auth.login') }}" class="text-center">I already have a membership</a>
         </div>
         <!-- /.form-box -->
     </div>

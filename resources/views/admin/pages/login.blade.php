@@ -2,7 +2,7 @@
 @section('page-auth')
     <div class="login-box">
         <div class="login-logo">
-            <a href="/"><b>Admin</b>LTE</a>
+            <a href="{{ route('admin.main.index') }}"><b>Admin</b>LTE</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -43,7 +43,7 @@
             <!-- /.social-auth-links -->
 
             <a href="#">I forgot my password</a><br>
-            <a href="admin/register" class="text-center">Register a new membership</a>
+            <a href="{{ route('admin.auth.register') }}" class="text-center">Register a new membership</a>
 
         </div>
         <!-- /.login-box-body -->

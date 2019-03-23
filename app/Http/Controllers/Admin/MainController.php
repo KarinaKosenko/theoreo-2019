@@ -9,8 +9,6 @@ class MainController extends Controller
 {
     public function index()
     {
-        return view('admin.pages.main',[
-            'classes' => 'skin-blue sidebar-mini',
-        ]);
+        return view('admin.pages.main');
     }
 }

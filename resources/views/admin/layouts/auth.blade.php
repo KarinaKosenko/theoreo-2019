@@ -1,12 +1,12 @@
 @extends('admin.layouts.base')
-@section('head_styles')
-    <link rel="stylesheet" href="admin-assets/plugins/iCheck/square/blue.css">
-@endsection
-@section('layout')
+@push('head_styles')
+    <link rel="stylesheet" href="{{ admin_asset('plugins/iCheck/square/blue.css') }}">
+@endpush
+@section('child-layout')
 @yield('page-auth')
 @endsection
-@section('app_scripts')
-    <script src="admin-assets/plugins/iCheck/icheck.min.js"></script>
+@push('app_scripts')
+    <script src="{{ admin_asset('plugins/iCheck/icheck.min.js') }}"></script>
     <script>
         $(function () {
             $('input').iCheck({
@@ -16,4 +16,4 @@
             });
         });
     </script>
-@endsection
+@endpush

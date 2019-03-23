@@ -11,14 +11,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>AdminLTE 2 | Starter</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="admin-assets/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="admin-assets/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{ admin_asset('bootstrap/css/bootstrap.min.css') }}">
+    <!-- Font Awesome pathAdminAsset -->
+    <link rel="stylesheet" href="{{ admin_asset('font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="admin-assets/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{ admin_asset('Ionicons/css/ionicons.min.css') }}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="admin-assets/css/AdminLTE.min.css">
-    @yield('head_styles')
+    <link rel="stylesheet" href="{{ admin_asset('css/AdminLTE.min.css') }}">
+    @stack('head_styles')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -28,24 +28,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    @yield('head_scripts')
+    @stack('head_scripts')
 </head>
 
-<body class="hold-transition {{ $classes }}">
+<body class="hold-transition {{ $classes ?? 'skin-blue sidebar-mini' }}">
 
-@yield('layout')
+@yield('child-layout')
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="admin-assets/jquery/jquery.min.js"></script>
+<script src="{{ admin_asset('jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="admin-assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="{{ admin_asset('bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
-@yield('app_scripts')
+@stack('app_scripts')
 </body>
 </html>
