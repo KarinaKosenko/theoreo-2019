@@ -90,14 +90,7 @@ $(document).ready(function() {
 
 * Block accorgion page category
 */
-    $(".all").change(function() {
-        if(this.checked) {
-            $(".accordion").show();
-            }else
-                {
-            $(".accordion").hide();
-        }
-    })
+
 
 
 

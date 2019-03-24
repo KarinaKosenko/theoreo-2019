@@ -1,5 +1,9 @@
 @extends('layouts.base')
 
+@section('sort_cat')
+    @include('widgets.prev_button')
+@show
+
 @section('content')
     <div class="row-fluid">
         <article role="article" class="content-block clearfix">
@@ -194,8 +198,9 @@
                     </div>
 
                 </section>
-                @includeIf('widgets.comment_block')
-                @includeIf('widgets.action_info')
+
+                @includeIf('widgets.comments_block')
+                @includeIf('widgets.similar_actions')
             </div>
         </article>
     </div>

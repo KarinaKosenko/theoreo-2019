@@ -3,7 +3,7 @@
 <head>
     <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
     <meta charset="UTF-8">
-    <title>Froggle</title>
+    <title>{{ $title ?? 'Froggle' }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="kywords" content="">
     <meta name="description" content="">
@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
     @stack('styles')
     @stack('head-scripts')
+
 </head>
 <body>
 <noscript>
@@ -49,10 +50,10 @@
             <div class="container-fluid">
                 <div class="row-fluid">
                     @include('blocks.header')
-                    @include('modals.modal-city')
+                    @include('modals.cities_select')
                     @include('widgets.search_form')
                 </div>
-                    @include('widgets.cat')
+                    @include('widgets.categories_list')
             </div>
         </div>
         </header>
@@ -63,7 +64,7 @@
         <div class="container-fluid">
 
             @section('sort_cat')
-                @include('widgets.sort_categoty')
+                @include('widgets.sorting')
             @show
 
             @yield('content')
@@ -80,13 +81,14 @@
 </main>
 
 @include('blocks.footer')
-@include('modals.modal_footer')
+@include('modals.city_form')
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
-<script src="{{asset('js/main.min.js')}}"></script>
+{{--<script src="{{asset('js/main.min.js')}}"></script>--}}
 <script src="{{asset('js/main.js')}}"></script>
 @stack('botton-scripts')
+
 </body>
 </html>

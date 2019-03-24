@@ -11,15 +11,15 @@
                         </div>
                         <div class="accordion">
                             <form class="form" method="post">
-                                <div class="grup"><h3>Кухни</h3>
+                                <div class="group"><h3>Кухни</h3>
                                     <div class="trigger">
-                                        <input type="checkbox" id="checkbox-1" name="checkbox-1" value="1"/>
+                                        <input class="check__input" type="checkbox" id="checkbox-1" name="checkbox-1" value="1" checked/>
                                         <label for="checkbox-1" class="checkbox">
-                                            Европейская <i></i>
+                                            Европейская <i class="iko iko-arrow {{--pull-left--}}"></i>
                                         </label>
                                     </div>
                                     <div class="trigger">
-                                        <input type="checkbox" id="checkbox-2" name="checkbox-2" value="2"/>
+                                        <input class="check__input" type="checkbox" id="checkbox-2" name="checkbox-2" value="2"/>
                                         <label for="checkbox-2" class="checkbox">
                                             Русская <i></i>
                                         </label>
@@ -30,33 +30,32 @@
                                             Итальянская <i></i>
                                         </label>
                                     </div>
-
-                                    <div class="grup"><h3>Услуги</h3>
-                                        <div class="trigger">
-                                            <input type="checkbox" id="checkbox-4" name="checkbox-4" value="4"/>
-                                            <label for="checkbox-4" class="checkbox">
-                                                С доставкой <i></i>
-                                            </label>
-                                        </div>
-                                        <div class="trigger">
-                                            <input type="checkbox" id="checkbox-5" name="checkbox-5" value="5" />
-                                            <label for="checkbox-5" class="checkbox">
-                                                В кафе <i></i>
-                                            </label>
-                                        </div>
-                                        <div class="trigger">
-                                            <input type="checkbox" id="checkbox-6" name="checkbox-6" value="6"/>
-                                            <label for="checkbox-5" class="checkbox">
-                                                Круглосуточно <i></i>
-                                            </label>
-                                        </div><br>
-                                        <div>
-                                            <input type="button" class="btn-1" value="Сбросить">
-                                            <input type="submit" class="btn-2" value="Применить">
-                                        </div>
-                                    </div>
-
                                 </div>
+
+                                <div class="group"><h3>Услуги</h3>
+                                    <div class="trigger">
+                                        <input type="checkbox" id="checkbox-4" name="checkbox-4" value="4" checked/>
+                                        <label for="checkbox-4" class="checkbox">
+                                            С доставкой <i></i>
+                                        </label>
+                                    </div>
+                                    <div class="trigger">
+                                        <input type="checkbox" id="checkbox-5" name="checkbox-5" value="5" />
+                                        <label for="checkbox-5" class="checkbox">
+                                            В кафе <i></i>
+                                        </label>
+                                    </div>
+                                    <div class="trigger">
+                                        <input type="checkbox" id="checkbox-6" name="checkbox-6" value="6"/>
+                                        <label for="checkbox-6" class="checkbox">
+                                            Круглосуточно <i></i>
+                                        </label>
+                                    </div><br>
+                                </div>
+                                    <div>
+                                        <input type="button" class="btn-1" value="Сбросить">
+                                        <input type="submit" class="btn-2" value="Применить">
+                                    </div>
 
                             </form>
                         </div>
@@ -257,6 +256,21 @@
 
                 </div>
 
-
-
 @endsection
+@push('botton-scripts')
+    <script>
+        $("#all").change(function() {
+            if(this.checked) {
+                $(".accordion").show();
+            }else
+            {
+                $(".accordion").hide();
+            }
+        })
+        $('.group input:checkbox').click(function(){
+            if ($(this).is(':checked')) {
+                $('.group input:checkbox').not(this).prop('checked', false);
+            }
+        });
+    </script>
+@endpush

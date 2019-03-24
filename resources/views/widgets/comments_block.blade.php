@@ -68,14 +68,14 @@
             </div>
             <div class="col-xs-24 col-md-12">
                 <div class="capcha">
-												<span class="capcha__wrap pull-right">
-													<span class="capcha__text">Введите капчу:</span>
-													<img src="img/temp/capcha.png"alt="" class="capcha__img">
-													<input type="text" class="form-control capcha__input">
-													<div class="capcha__btn">
-														<button role="submit" type="submit" class="btn btn-primary pull-right">Отправить</button>
-													</div>
-												</span>
+                            <span class="capcha__wrap pull-right">
+                                <span class="capcha__text">Введите капчу:</span>
+                                <img src="img/temp/capcha.png"alt="" class="capcha__img">
+                                <input type="text" class="form-control capcha__input">
+                                <div class="capcha__btn">
+                                    <button role="submit" type="submit" class="btn btn-primary pull-right">Отправить</button>
+                                </div>
+                            </span>
                 </div>
             </div>
         </div>
