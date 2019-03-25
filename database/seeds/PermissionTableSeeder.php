@@ -15,7 +15,7 @@ class PermissionTableSeeder extends Seeder
         $permissions = [
             ['Администрирование', 'admin.admin_panel'],
             ['Управление брендами', 'admin.brands_section'],
-            ['Модерация акциями', 'admin.actions_section'],
+            ['Управление акциями', 'admin.actions_section'],
             ['Модерация контента', 'admin.content_moderation_section'],
             ['Управление пользователями', 'admin.users_section'],
             ['Поисковые запросы', 'admin.search_queries_section'],
