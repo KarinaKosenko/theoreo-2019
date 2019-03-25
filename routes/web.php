@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 Route::group(['namespace' => 'Site'], function() {
     Route::get('/', 'HomeController@index')->name('home');
@@ -7,5 +8,3 @@ Route::group(['namespace' => 'Site'], function() {
     Route::get('/action/{action_alias?}', 'HomeController@action')->where('action_alias', '[a-z-]+');
     Route::get('/brand/{brand_alias?}', 'HomeController@brand')->where('brand_alias', '[a-z-]+');
 });
-
-Route::view('/404', 'pages.404');
