@@ -7,9 +7,9 @@
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Sign in to start your session</p>
-
-                <p class="login-box-msg">123 {{ session('authError') }}</p>
-
+@if(session('authError'))
+                <p class="login-box-msg">{{ session('authError') }}</p>
+@endif
 
 
             <form action="" method="post">
