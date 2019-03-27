@@ -18,9 +18,9 @@ class CreateBrandsTable extends Migration {
 			$table->string( 'site_url' )->nullable();
 			$table->string( 'vk_url' )->nullable();
 			$table->string( 'code' );
-			$table->string( 'phone' );
-			$table->string( 'sell_address' )->nullable();
-			$table->enum( 'type', [ 'federal_brand', 'internet_shop' ] );
+			$table->text( 'phone' );
+			$table->text( 'sell_address' )->nullable();
+			$table->enum( 'type', [ 'federal_brand', 'internet_shop' ] )->default( 'federal_brand' );
 			$table->timestamps();
 			$table->softDeletes();
 		} );

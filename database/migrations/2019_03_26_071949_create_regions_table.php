@@ -18,6 +18,7 @@ class CreateRegionsTable extends Migration {
 			$table->bigInteger( 'country_id' )->unsigned();
 			$table->foreign( 'country_id' )->references( 'id' )->on( 'countries' );
 			$table->timestamps();
+			$table->softDeletes();
 		} );
 	}
 

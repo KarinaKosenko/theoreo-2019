@@ -18,6 +18,7 @@ class CreateCitiesTable extends Migration {
 			$table->bigInteger( 'regions_id' )->unsigned();
 			$table->foreign( 'regions_id' )->references( 'id' )->on( 'regions' );
 			$table->timestamps();
+			$table->softDeletes();
 		} );
 	}
 
