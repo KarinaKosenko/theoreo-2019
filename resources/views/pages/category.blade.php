@@ -11,11 +11,11 @@
                         </div>
                         <div class="accordion">
                             <form class="form" method="post">
-                                <div class="group"><h3>Кухни</h3>
+                                <div class="group-1"><h3>Кухни</h3>
                                     <div class="trigger">
                                         <input class="check__input" type="checkbox" id="checkbox-1" name="checkbox-1" value="1" checked/>
                                         <label for="checkbox-1" class="checkbox">
-                                            Европейская <i class="iko iko-arrow {{--pull-left--}}"></i>
+                                            Европейская <i></i>
                                         </label>
                                     </div>
                                     <div class="trigger">
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
 
-                                <div class="group"><h3>Услуги</h3>
+                                <div class="group-2"><h3>Услуги</h3>
                                     <div class="trigger">
                                         <input type="checkbox" id="checkbox-4" name="checkbox-4" value="4" checked/>
                                         <label for="checkbox-4" class="checkbox">
@@ -267,9 +267,14 @@
                 $(".accordion").hide();
             }
         })
-        $('.group input:checkbox').click(function(){
+        $('.group-1 input:checkbox').click(function(){
             if ($(this).is(':checked')) {
-                $('.group input:checkbox').not(this).prop('checked', false);
+                $('.group-1 input:checkbox').not(this).prop('checked', false);
+            }
+        });
+        $('.group-2 input:checkbox').click(function(){
+            if ($(this).is(':checked')) {
+                $('.group-2 input:checkbox').not(this).prop('checked', false);
             }
         });
     </script>

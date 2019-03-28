@@ -69,10 +69,6 @@
 
             @yield('content')
 
-           {{-- @section('action_info')
-                @include('widgets.action_info')
-            @show--}}
-
             @section('button_load')
                 @include('widgets.button_loader')
             @show
@@ -86,7 +82,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
-{{--<script src="{{asset('js/main.min.js')}}"></script>--}}
+<script src="{{asset('js/main.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 @stack('botton-scripts')
 
