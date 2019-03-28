@@ -14,4 +14,10 @@ class Action extends Model {
 	public function cities() {
 		return $this->belongsToMany( 'App\Models\City' );
 	}
+
+	public function brand() {
+		return $this->hasOne( 'App\Models\Brand' );
+	}
+
+
 }
