@@ -28,8 +28,8 @@ class CreateActionsTable extends Migration {
 			$table->bigInteger( 'category_id' )->unsigned();
 			$table->foreign( 'brand_id' )->references( 'id' )->on( 'brands' );
 			$table->foreign( 'category_id' )->references( 'id' )->on( 'categories' );
-			$table->text( 'address' );
-			$table->text( 'phone' );
+			$table->text( 'address' )->nullable();
+			$table->text( 'phone' )->nullable();
 			$table->timestamps();
 			$table->softDeletes();
 		} );

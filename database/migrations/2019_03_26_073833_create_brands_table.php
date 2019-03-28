@@ -14,11 +14,11 @@ class CreateBrandsTable extends Migration {
 		Schema::create( 'brands', function ( Blueprint $table ) {
 			$table->bigIncrements( 'id' );
 			$table->string( 'name', 190 )->unique();
-			$table->string( 'img' );
+			$table->string( 'img' )->nullable();
 			$table->string( 'site_url' )->nullable();
 			$table->string( 'vk_url' )->nullable();
 			$table->string( 'code' );
-			$table->text( 'phone' );
+			$table->text( 'phone' )->nullable();
 			$table->text( 'sell_address' )->nullable();
 			$table->enum( 'type', [ 'federal_brand', 'internet_shop' ] )->default( 'federal_brand' );
 			$table->timestamps();
