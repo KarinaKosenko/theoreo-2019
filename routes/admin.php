@@ -11,7 +11,7 @@ Route::get('/login', function () {
 Route::post('/login', 'AuthController@loginPost');
 
 Route::get('/logout', 'AuthController@logout')
-->name('admin.auth.logout');
+    ->name('admin.auth.logout');
 
 Route::get('/register', function () {
     return view('admin.pages.register', [
@@ -19,7 +19,8 @@ Route::get('/register', function () {
     ]);
 })->name('admin.auth.register');
 
-Route::get('/', 'MainController@index')
-    ->name('admin.main.index')
-    ->middleware('auth')
-    ->middleware('can:login,App\Models\User');
+Route::middleware(['auth', 'can:adminPanel,App\Models\User'])->group(function () {
+
+    Route::get('/', 'MainController@index')->name('admin.main.index');
+
+});
