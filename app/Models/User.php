@@ -42,4 +42,14 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Role');
     }
 
+    public function permissions()
+    {
+        $permissions=[];
+        foreach ($this->roles as $role){
+            foreach($role->permissions as $perm){
+                $permissions[]=$perm->code;
+            }
+        }
+        return $permissions;
+    }
 }
