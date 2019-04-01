@@ -8,7 +8,7 @@ class City extends Model {
 	protected $guarded = [ 'id', 'code', 'created_at', 'updated_at', 'deleted_at' ];
 
 	public function region() {
-		return $this->hasOne( 'App\Models\Region' );
+		return $this->belongsTo( 'App\Models\Region' );
 	}
 
 	public function user() {

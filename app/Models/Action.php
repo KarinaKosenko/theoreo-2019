@@ -8,7 +8,7 @@ class Action extends Model {
 	protected $guarded = [ 'id', 'code', 'created_at', 'updated_at', 'deleted_at' ];
 
 	public function tags() {
-		return $this->belongsToMany( 'App\Models\Tag' );
+		return $this->hasMany( 'App\Models\Tag' );
 	}
 
 	public function cities() {
@@ -16,8 +16,11 @@ class Action extends Model {
 	}
 
 	public function brand() {
-		return $this->hasOne( 'App\Models\Brand' );
+		return $this->belongsTo( 'App\Models\Brand' );
 	}
 
+	public function categories() {
+		return $this->belongsToMany( 'App\Models\Category' );
+	}
 
 }

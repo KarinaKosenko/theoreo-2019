@@ -16,7 +16,7 @@ class Brand extends Model {
 	}
 
 	public function action() {
-		return $this->belongsTo( 'App\Models\Action' );
+		return $this->hasMany( 'App\Models\Action' );
 	}
 
 }

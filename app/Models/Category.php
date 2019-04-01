@@ -10,4 +10,8 @@ class Category extends Model {
 	public function brands() {
 		return $this->belongsToMany( 'App\Models\Brand' );
 	}
+
+	public function actions() {
+		return $this->belongsToMany( 'App\Models\Action' );
+	}
 }

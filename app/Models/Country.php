@@ -8,6 +8,6 @@ class Country extends Model {
 	protected $guarded = [ 'id', 'code', 'created_at', 'updated_at', 'deleted_at' ];
 
 	public function region() {
-		return $this->belongsTo( 'App\Models\Region' );
+		return $this->hasMany( 'App\Models\Region' );
 	}
 }
