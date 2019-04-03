@@ -11,4 +11,6 @@ class MainController extends Controller
     {
         return view('admin.pages.main');
     }
+
+
 }

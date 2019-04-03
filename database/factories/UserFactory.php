@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\ModelsUser;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
