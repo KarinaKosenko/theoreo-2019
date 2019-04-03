@@ -13,7 +13,7 @@ class UbdateBrandCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists( 'brand_caregory' );
+        Schema::dropIfExists( 'brand_category' );
 
         Schema::create( 'brand_category', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
@@ -34,7 +34,7 @@ class UbdateBrandCategoryTable extends Migration
     {
         Schema::dropIfExists( 'brand_category' );
 
-        Schema::create( 'brand_caregory', function ( Blueprint $table ) {
+        Schema::create( 'brand_category', function ( Blueprint $table ) {
             $table->bigIncrements( 'id' );
             $table->bigInteger( 'brand_id' )->unsigned();
             $table->bigInteger( 'category_id' )->unsigned();
