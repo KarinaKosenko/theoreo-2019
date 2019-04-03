@@ -20,7 +20,7 @@ class Action extends Model {
 	}
 
 	public function categories() {
-		return $this->hasMany( 'App\Models\Category' );
+		return $this->belongsTo( 'App\Models\Category' );
 	}
 
 }

@@ -12,7 +12,7 @@ class City extends Model {
 	}
 
 	public function user() {
-		return $this->belongsTo( 'App\Models\User' );
+		return $this->hasMany( 'App\Models\User' );
 	}
 
 	public function actions() {

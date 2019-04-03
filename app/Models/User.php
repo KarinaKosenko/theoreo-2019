@@ -47,7 +47,7 @@ class User extends Authenticatable
 	}
 
 	public function city() {
-		return $this->hasOne( 'App\Models\City' );
+		return $this->belongsTo( 'App\Models\City' );
 	}
 
 }
