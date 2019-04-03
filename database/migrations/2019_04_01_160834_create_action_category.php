@@ -4,18 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandCategoryTable extends Migration {
+class CreateActionCategory extends Migration {
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
 	public function up() {
-		Schema::create( 'brand_category', function ( Blueprint $table ) {
+		Schema::create( 'action_category', function ( Blueprint $table ) {
 			$table->bigIncrements( 'id' );
-			$table->bigInteger( 'brand_id' )->unsigned();
+			$table->bigInteger( 'action_id' )->unsigned();
 			$table->bigInteger( 'category_id' )->unsigned();
-			$table->foreign( 'brand_id' )->references( 'id' )->on( 'brands' );
+			$table->foreign( 'action_id' )->references( 'id' )->on( 'actions' );
 			$table->foreign( 'category_id' )->references( 'id' )->on( 'categories' );
 			$table->timestamps();
 		} );
@@ -27,6 +27,6 @@ class CreateBrandCategoryTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists( 'brand_caregory' );
+		Schema::dropIfExists( 'action_category' );
 	}
 }

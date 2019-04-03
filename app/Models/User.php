@@ -52,4 +52,12 @@ class User extends Authenticatable
         }
         return $permissions;
     }
+	public function userinfo() {
+		return $this->hasOne( 'App\Models\Userinfo' );
+	}
+
+	public function city() {
+		return $this->belongsTo( 'App\Models\City' );
+	}
+
 }
