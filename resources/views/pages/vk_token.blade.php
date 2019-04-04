@@ -3,21 +3,8 @@
 @show
 @section('content')
 
+    <h1><a href="{{ $str }}"> Войти через VK.Com </a></h1>
 
-    <div>
-        @foreach($response['response']['items'] as $tours)
-
-            <div>{{ $tours['text'] }}</div><hr>
-            {{--@foreach($tours['attachments'] as $inf)
-                <div>{{ $inf['link']['title'] }}</div>
-                <div>{{ $inf['link']['description'] }}</div>
-
-            @endforeach--}}
-
-        @endforeach
-    </div>
-
-    <pre>{{ print_r($response) }}</pre>
 
 
 @endsection

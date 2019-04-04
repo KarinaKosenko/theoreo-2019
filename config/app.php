@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         ATehnix\LaravelVkRequester\VkRequesterServiceProvider::class,
+        App\Providers\HelpersServiceProvider::class
 
     ],
 

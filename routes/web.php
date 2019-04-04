@@ -8,8 +8,10 @@ Route::group(['namespace' => 'Site'], function() {
     Route::get('/action/{action_alias?}', 'HomeController@action')->where('action_alias', '[a-z-]+');
     Route::get('/brand/{brand_alias?}', 'HomeController@brand')->where('brand_alias', '[a-z-]+');
 
-    Route::get('/vkauth', 'HomeController@activation');
-    Route::get('/vk_token', 'HomeController@vkActivation');
+    Route::get('/vk_token', 'HomeController@generateToken');
+    Route::get('/vk_wall', 'HomeController@vkWallGet');
+    Route::get('/vk_newsfeed', 'HomeController@vkNewsfeedGet');
+    Route::get('/vk_groups/{offset?}/{id?}', 'HomeController@vkGroupsGet')->where('id', '[0-9-]+');
 });
 
 
