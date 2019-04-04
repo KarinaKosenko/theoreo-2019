@@ -24,3 +24,10 @@ Route::middleware(['auth', 'can:adminPanel,App\Models\User'])->group(function ()
     Route::get('/', 'MainController@index')->name('admin.main.index');
 
 });
+
+Route::group( [ 'prefix' => 'action' ], function () {
+	Route::get( 'addForm', 'PostController@getAll' )->name( 'allPosts' );
+	Route::get( 'addPost', 'PostController@addPostGet' )->name( 'addPostGet' );
+	Route::post( 'addPost', 'PostController@addPostPost' )->name( 'addPostPost' );
+
+} );
