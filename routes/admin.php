@@ -31,3 +31,13 @@ Route::group( [ 'prefix' => 'action' ], function () {
 	Route::post( 'addPost', 'PostController@addPostPost' )->name( 'addPostPost' );
 
 } );
+
+Route::group( [ 'prefix' => 'location' ], function () {
+	Route::get( 'addCountry', 'LocationController@formAddCountry' )->name( 'formAddCountry' );
+	Route::post( 'addCountry', 'LocationController@addCountry' )->name( 'addCountry' );
+	Route::get( 'addRegion', 'LocationController@formAddRegion' )->name( 'formAddRegion' );
+	Route::post( 'addRegion', 'LocationController@addRegion' )->name( 'addRegion' );
+	Route::get( 'addCity', 'LocationController@formAddCity' )->name( 'formAddCity' );
+	Route::post( 'addCity', 'LocationController@addCity' )->name( 'addCity' );
+} );
+
