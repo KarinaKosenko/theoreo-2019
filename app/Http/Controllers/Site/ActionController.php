@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Models\{Action, Category};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
-{
-   public function index()
-   {
 
-       return view('pages.home');
-   }
+class ActionController extends Controller
+{
+    public function index()
+    {
+        $actions = Action::where('date_end', '>=', date('Y-m-d'))
+            ->where('date_start', '<=', date('Y-m-d H:i:s'))
+            ->paginate(10);
+        return view('pages.home', ['actions' => $actions]);
+    }
 
     public function show()
     {

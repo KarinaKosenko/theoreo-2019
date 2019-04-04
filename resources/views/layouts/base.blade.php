@@ -70,7 +70,7 @@
             @yield('content')
 
             @section('button_load')
-                @include('widgets.button_loader')
+                {{--@include('widgets.button_loader')--}}
             @show
         </div>
     </div>

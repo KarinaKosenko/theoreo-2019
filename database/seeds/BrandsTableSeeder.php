@@ -68,7 +68,7 @@ class BrandsTableSeeder extends Seeder
                 'name' => $brand['name'],
                 'img' => $brand['img'],
                 'site_url' => $brand['site'],
-                'vk_url' => $brand['site'],
+                'vk_url' => $brand['vk'],
                 'code' => Str::slug($brand['name']),
                 'phone' => $brand['phone'],
                 'type' => $brand['type'],
