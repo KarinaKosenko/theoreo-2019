@@ -7,7 +7,7 @@
         <article role="article" class="content-block clearfix">
             <div class="sidebar col-xs-24 col-sm-10">
                 <div class="sidebar__item">
-                    <a href="/action/{{$action->code}}" title="{{$action->brand->name}}">
+                    <a href="{{route('site.action')}}/{{$action->code}}" title="{{$action->brand->name}}">
                         <div class="sidebar__img">
                             <img src="{{$action->img}}" alt="" class="img-responsive">
                         </div>
@@ -19,11 +19,11 @@
             </div>
 
             <div class="col-xs-24 col-sm-14">
-                <a role="link" href="/action/{{$action->code}}" class="content-block__heading">
+                <a role="link" href="{{route('site.action')}}/{{$action->code}}" class="content-block__heading">
                     <h2>{{ $action->title }}</h2>
                 </a>
                 <p class="content-block__introtext">{{ $action->text }}</p>
-                <p class="content-block__date">Срок проведения: {{date('d.m.Y', strtotime($action->date_start))}}-{{date('d.m.Y', strtotime($action->date_end))}}</p>
+                <p class="content-block__date">Срок проведения: {{ my_date_format($action->date_start) }}-{{my_date_format($action->date_end)}}</p>
                 <ul class="content-block__list list-unstyled list-inline hidden-xs">
                     @foreach($action->tags as $tag)
                     <li class="content-block__item"><a href="" class="btn btn-default content-block__tag">{{$tag->name}}</a></li>

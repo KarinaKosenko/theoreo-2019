@@ -13,16 +13,7 @@ class UbdateBrandCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists( 'brand_category' );
 
-        Schema::create( 'brand_category', function ( Blueprint $table ) {
-            $table->bigIncrements( 'id' );
-            $table->bigInteger( 'brand_id' )->unsigned();
-            $table->bigInteger( 'category_id' )->unsigned();
-            $table->foreign( 'brand_id' )->references( 'id' )->on( 'brands' );
-            $table->foreign( 'category_id' )->references( 'id' )->on( 'categories' );
-            $table->timestamps();
-        } );
     }
 
     /**
@@ -32,15 +23,6 @@ class UbdateBrandCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists( 'brand_category' );
 
-        Schema::create( 'brand_category', function ( Blueprint $table ) {
-            $table->bigIncrements( 'id' );
-            $table->bigInteger( 'brand_id' )->unsigned();
-            $table->bigInteger( 'category_id' )->unsigned();
-            $table->foreign( 'brand_id' )->references( 'id' )->on( 'brands' );
-            $table->foreign( 'category_id' )->references( 'id' )->on( 'categories' );
-            $table->timestamps();
-        } );
     }
 }

@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
         require_once app_path('Custom/helpers.php');
 
         View::composer(
-            '*', function ($view) {
+            'widgets.categories_list', function ($view) {
             $categories = Category::all();
             $view->with([
                 'categories' => $categories
