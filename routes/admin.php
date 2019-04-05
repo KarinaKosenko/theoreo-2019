@@ -41,3 +41,13 @@ Route::group( [ 'prefix' => 'location' ], function () {
 	Route::post( 'addCity', 'LocationController@addCity' )->name( 'addCity' );
 } );
 
+Route::group( [ 'prefix' => 'tag' ], function () {
+	Route::get( 'add', 'TagController@formAddTag' )->name( 'formAddTag' );
+	Route::post( 'add', 'TagController@addTag' )->name( 'addTag' );
+} );
+
+Route::group( [ 'prefix' => 'category' ], function () {
+	Route::get( 'add', 'CategoryController@formAddCategory' )->name( 'formAddCategory' );
+	Route::post( 'add', 'CategoryController@addCategory' )->name( 'addCategory' );
+} );
+
