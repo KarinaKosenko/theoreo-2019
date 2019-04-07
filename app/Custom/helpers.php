@@ -12,3 +12,18 @@ function my_date_format($date = null)
     }
     return date('d.m.Y', strtotime($date));
 }
+
+function get_geoposition($address)
+{
+    $geo = [];
+    $response = file_get_contents('https://geocode-maps.yandex.ru/1.x/?geocode=' . $address);
+    preg_match('/<pos>(.*?)<\/pos>/', $response, $point);
+    if (!$point) {
+        return false;
+    }
+    $c = explode(' ', $point[1]);
+    $geo['lat'] = $c[1];
+    $geo['lng'] = $c[0];
+    $geo['address'] = $address;
+    return $geo;
+}
