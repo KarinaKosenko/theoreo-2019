@@ -22,7 +22,7 @@ class AddCity extends FormRequest {
 	public function rules() {
 		return [
 			'name'      => 'required|min:2|max:50|unique:cities',
-			'region_id' => 'required'
+			'region_id' => 'required|integer'
 		];
 	}
 }

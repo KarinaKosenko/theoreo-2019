@@ -21,7 +21,8 @@ class AddRegion extends FormRequest {
 	 */
 	public function rules() {
 		return [
-			'name' => 'required|min:2|max:50|unique:regions',
+			'name'       => 'required|min:2|max:50|unique:regions',
+			'country_id' => 'required|integer'
 		];
 	}
 }
