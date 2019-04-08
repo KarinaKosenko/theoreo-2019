@@ -63,3 +63,8 @@ Route::group( [ 'prefix' => 'brand' ], function () {
 	Route::post( 'add', 'BrandController@addBrand' )->name( 'addBrand' );
 } );
 
+Route::group( [ 'prefix' => 'action' ], function () {
+	Route::get( 'add', 'ActionController@formAddAction' )->name( 'formAddAction' );
+	Route::post( 'add', 'ActionController@addAction' )->name( 'addAction' );
+} );
+

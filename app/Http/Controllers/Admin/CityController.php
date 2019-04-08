@@ -21,7 +21,7 @@ class CityController extends Controller {
 	}
 
 	public function addCity( AddCity $request ) {
-		$regions        = Region::orderBy( 'name', 'desc' )->get();
+		$regions        = Region::orderBy( 'name', 'asc' )->get();
 		$values         = $request->except( '_token' );
 		$values['code'] = Str::slug( $values['name'], '-' );
 

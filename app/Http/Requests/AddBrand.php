@@ -26,7 +26,8 @@ class AddBrand extends FormRequest {
 			'site_url'     => 'nullable|active_url',
 			'vk_url'       => 'nullable|active_url',
 			'phone'        => 'nullable|min:6|max:15', // !TODO нужно будет переделать на регулярку
-			'sell_address' => 'nullable|min:6|max:150',
+			'sell_address' => 'nullable|min:6|max:250',
+			'type'         => 'nullable',
 		];
 	}
 }

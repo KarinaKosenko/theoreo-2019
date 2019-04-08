@@ -50,9 +50,12 @@ class BrandController extends Controller {
 		$values         = $request->except( '_token' );
 		$values['code'] = Str::slug( $values['name'], '-' );
 		$types          = $this->getTypes();
-		debug( $values );
+
 		try {
-			Brand::create( $values );
+			$new       = Brand::create( $values );
+			$code      = $new->id . ':' . $values['code'];
+			$new->code = $code;
+			$new->save();
 			$message = 'Бренд успешно добавлен!';
 		} catch ( QueryException $exception ) {
 			$message = $exception->errorInfo[2];
