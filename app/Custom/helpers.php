@@ -21,7 +21,7 @@ function get_geoposition($address)
     $geo = null;
     $point = [];
     $response = null;
-    $url = 'https://geocode-maps.yandex.ru/1.x/?geocode=' . Str::ascii($address);
+    $url = "https://geocode-maps.yandex.ru/1.x/?apikey=f112f3e4-d246-486d-80e2-0c171bc8d004&geocode=" . Str::ascii($address);
     try {
         $client = new Client();
         $response = $client->request('GET', $url);

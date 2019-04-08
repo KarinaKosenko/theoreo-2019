@@ -7,7 +7,7 @@
         <article role="article" class="content-block clearfix">
             <div class="sidebar col-xs-24 col-sm-10">
                 <div class="sidebar__item">
-                    <a href="{{route('site.action')}}/{{$action->code}}" title="{{$action->brand->name}}">
+                    <a href="{{route('site.action.show')}}/{{$action->code}}" title="{{$action->brand->name}}">
                         <div class="sidebar__img">
                             <img src="{{$action->img}}" alt="" class="img-responsive">
                         </div>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="col-xs-24 col-sm-14">
-                <a role="link" href="{{route('site.action')}}/{{$action->code}}" class="content-block__heading">
+                <a role="link" href="{{route('site.action.show')}}/{{$action->code}}" class="content-block__heading">
                     <h2>{{ $action->title }}</h2>
                 </a>
                 <p class="content-block__introtext">{{ $action->text }}</p>

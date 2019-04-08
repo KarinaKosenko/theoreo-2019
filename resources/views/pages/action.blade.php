@@ -6,7 +6,7 @@
 
 @if(!count($geo) == 0)
     @push('head-scripts')
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=f112f3e4-d246-486d-80e2-0c171bc8d004&lang=ru_RU" type="text/javascript"></script>
     @endpush
 
     @push('botton-scripts')
@@ -59,7 +59,9 @@
                         </ul>
                     </div>
                 </div>
+                @if(!count($geo) == 0)
                 <section class="more-info">
+
                     <div class="row">
                         <div class="col-xs-24">
                             <h3 class="more-info__heading">
@@ -82,6 +84,7 @@
                                     @endforeach
                                 </div>
                             </div>
+                            @if(count($geo) > 10)
                             <div class="more-info__load-more">
                                 <div class="row">
                                     <div class="col-xs-24">
@@ -92,6 +95,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @endif
                             <div class="col-xs-24">
                                 <div class="more-info__maps">
                                     <div id="map" style="width: 100%; height: 400px"></div>
@@ -100,8 +104,9 @@
                         </div>
                     </div>
 
-                </section>
 
+                </section>
+                @endif
                 @includeIf('widgets.comments_block')
                 @includeIf('widgets.similar_actions')
             </div>
