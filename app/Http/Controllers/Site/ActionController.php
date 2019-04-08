@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Models\{
-    Action, Category
-};
+use App\Models\Action;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,29 +11,37 @@ class ActionController extends Controller
 {
     public function index()
     {
-        $actions = Action::where('date_end', '>=', date('Y-m-d'))
+        $actions = Action::with(['tags','brand'])
+        ->where('date_end', '>=', date('Y-m-d'))
             ->where('date_start', '<=', date('Y-m-d H:i:s'))
             ->paginate(10);
         return view('pages.home', ['actions' => $actions]);
     }
 
-    public function show()
+    public function category()
     {
         return view('pages.category');
     }
 
-    public function action(Request $request)
+    public function show(Request $request)
     {
         $geo = [];
-        if ($action = Action::where('code', '=', $request->action_alias)->first()) {
+        $point = null;
+        if ($action = Action::with(['tags','brand'])
+            ->where('code', '=', $request->action_alias)
+            ->first()) {
             if (get_geoposition($action->address)) {
-                $geo[] = get_geoposition($action->address);
+                $point = get_geoposition($action->address);
             } elseif ($action->brand->sell_addres) {
-                $geo[] = get_geoposition($action->brand->sell_addres);
+                $point = get_geoposition($action->brand->sell_addres);
             } elseif ($action->cities->first()) {
-                $geo[] = get_geoposition($action->cities->first()->name);
+                $point = get_geoposition($action->cities->first()->name);
             }
-            return view('pages.action', ['action' => $action, 'geo' => $geo]);
+            if ($point) {
+                $geo[] = $point;
+            }
+            return view('pages.action',
+                ['action' => $action, 'geo' => $geo]);
         } else {
             return view('pages.404');
         }

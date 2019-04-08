@@ -2,7 +2,7 @@
     <h4 class="more-info__heading">Комментарии <span class="more-info__heading--num">(2)</span></h4>
     <div class="comment clearfix">
         <div class="comment__photo">
-            <img src="/img/temp/temp_photo-1.jpg" alt="" class="comment__image">
+            <img src="{{asset('img/temp/temp_photo-1.jpg')}}" alt="" class="comment__image">
         </div>
         <div class="comment__content">
             <h5 class="comment__heading">Вячеслав Иванов</h5>
@@ -12,7 +12,7 @@
     </div>
     <div class="comment clearfix">
         <div class="comment__photo">
-            <img src="/img/temp/temp_photo-1.jpg" alt="" class="comment__image">
+            <img src="{{asset('img/temp/temp_photo-1.jpg')}}" alt="" class="comment__image">
         </div>
         <div class="comment__content">
             <h5 class="comment__heading">Светлана Александрова</h5>
@@ -70,7 +70,7 @@
                 <div class="capcha">
                             <span class="capcha__wrap pull-right">
                                 <span class="capcha__text">Введите капчу:</span>
-                                <img src="/img/temp/capcha.png"alt="" class="capcha__img">
+                                <img src="{{asset('img/temp/capcha.png')}}"alt="" class="capcha__img">
                                 <input type="text" class="form-control capcha__input">
                                 <div class="capcha__btn">
                                     <button role="submit" type="submit" class="btn btn-primary pull-right">Отправить</button>

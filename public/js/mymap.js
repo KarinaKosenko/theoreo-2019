@@ -1,7 +1,8 @@
 ymaps.ready(function () {
+
     let myMap = new ymaps.Map("map",{
         center : points[0],
-        zoom : 10,
+        zoom : 14,
         controls : ['zoomControl'],
         behaviors : []
     });

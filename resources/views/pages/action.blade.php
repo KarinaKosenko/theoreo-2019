@@ -4,20 +4,22 @@
     @include('widgets.prev_button')
 @show
 
-@push('head-scripts')
-<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-@endpush
+@if(!count($geo) == 0)
+    @push('head-scripts')
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    @endpush
 
-@push('botton-scripts')
-    <script src="{{asset('js/mymap.js')}}"></script>
-    <script>
-        let points = [
-            @foreach($geo as $point)
-            ['{{$point['lat']}}','{{$point['lng']}}','{{$point['address']}}'],
-            @endforeach
-        ];
-    </script>
-@endpush
+    @push('botton-scripts')
+        <script src="{{asset('js/mymap.js')}}"></script>
+        <script>
+            let points = [
+                @foreach($geo as $point)
+                ['{{$point['lat']}}','{{$point['lng']}}','{{$point['address']}}'],
+                @endforeach
+            ];
+        </script>
+    @endpush
+@endif
 
 @section('content')
     <div class="row-fluid">
