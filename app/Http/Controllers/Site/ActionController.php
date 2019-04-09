@@ -27,21 +27,26 @@ class ActionController extends Controller
     {
         $geo = [];
         $point = null;
+        $addresses=[];
         if ($action = Action::with(['tags','brand'])
             ->where('code', '=', $request->action_alias)
             ->first()) {
-            if (get_geoposition($action->address)) {
-                $point = get_geoposition($action->address);
-            } elseif ($action->brand->sell_addres) {
-                $point = get_geoposition($action->brand->sell_addres);
-            } elseif ($action->cities->first()) {
-                $point = get_geoposition($action->cities->first()->name);
+            if (!$action->address == null) {
+                $address = $action->address;
+                $point = get_geoposition($address);
+            } elseif (!$action->brand->sell_addres == null) {
+                $address = $action->brand->sell_addres;
+                $point = get_geoposition($address);
+            } elseif (!$action->cities->first()->name == null) {
+                $address = $action->cities->first()->name;
+                $point = get_geoposition($address);
             }
+            $addresses[] = $address;
             if ($point) {
                 $geo[] = $point;
             }
             return view('pages.action',
-                ['action' => $action, 'geo' => $geo]);
+                ['action' => $action, 'geo' => $geo, 'addresses' => $addresses]);
         } else {
             return view('pages.404');
         }

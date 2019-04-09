@@ -59,7 +59,7 @@
                         </ul>
                     </div>
                 </div>
-                @if(!count($geo) == 0)
+                @if(!count($addresses) == 0)
                 <section class="more-info">
 
                     <div class="row">
@@ -69,7 +69,7 @@
                             </h3>
                             <div class="more-info__address more-info__address--height js-store-list">
                                 <div class="row">
-                                    @foreach($geo as $address)
+                                    @foreach($addresses as $address)
                                     <div class="col-xs-24 col-sm-12">
                                         <h4 class="more-info__name">
                                             <i class="ico ico-point-active more-info__ico--point"></i>
@@ -77,14 +77,14 @@
                                         </h4>
                                         <ul class="more-info__list">
                                             <li class="more-info__item">
-                                                <a href="" class="more-info__link">{{$address['address']}}</a>
+                                                <a href="" class="more-info__link">{{$address}}</a>
                                             </li>
                                         </ul>
                                     </div>
                                     @endforeach
                                 </div>
                             </div>
-                            @if(count($geo) > 10)
+                            @if(count($addresses) > 10)
                             <div class="more-info__load-more">
                                 <div class="row">
                                     <div class="col-xs-24">
@@ -96,11 +96,13 @@
                                 </div>
                             </div>
                             @endif
+                            @if(!count($geo) == 0)
                             <div class="col-xs-24">
                                 <div class="more-info__maps">
                                     <div id="map" style="width: 100%; height: 400px"></div>
                                 </div>
                             </div>
+                            @endif
                         </div>
                     </div>
 
