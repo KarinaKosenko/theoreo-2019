@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-xs-24">
                             <h3 class="more-info__heading">
-                                Адреса проведения акции <span class="more-info__heading--num">({{count($geo)}})</span>
+                                Адреса проведения акции <span class="more-info__heading--num">({{count($addresses)}})</span>
                             </h3>
                             <div class="more-info__address more-info__address--height js-store-list">
                                 <div class="row">
