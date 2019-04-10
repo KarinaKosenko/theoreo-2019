@@ -34,7 +34,7 @@ class ActionsTableSeeder extends Seeder
             'img' => 'https://sushiwok.ru/img/d21b5d03020bd4edae862d5e7d3c3161/1024x1024',
             'brand' => '3',
             'cat' => '3',
-            'address' => 'пр-т. Космонавтов, д.72',
+            'address' => 'Екатеринбург, пр-т. Космонавтов, д.72',
             'phone' => '8 (343) 224-11-11',
         ],
         [
@@ -53,7 +53,7 @@ class ActionsTableSeeder extends Seeder
             'img' => 'https://images.wbstatic.net/poster/ru/action2/c660x210/470090566.jpg',
             'brand' => '5',
             'cat' => '5',
-            'address' => 'г. Каменск-Уральский (Свердловская область), улица 4-й ',
+            'address' => 'г. Каменск-Уральский (Свердловская область), улица 4-й Пятилетки',
             'phone' => '8 (495) 775-55-05',
         ],
     ];
