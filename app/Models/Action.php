@@ -23,9 +23,14 @@ class Action extends Model
         return $this->belongsTo('App\Models\Brand');
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo('App\Models\Category');
     }
 
+    function scopeIndate($query)
+    {
+        return $query->where('date_end', '>=', date('Y-m-d'))
+            ->where('date_start', '<=', date('Y-m-d H:i:s'));
+    }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Models\Action;
+use App\Models\{Action,Category};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,15 +12,21 @@ class ActionController extends Controller
     public function index()
     {
         $actions = Action::with(['tags','brand'])
-        ->where('date_end', '>=', date('Y-m-d'))
-            ->where('date_start', '<=', date('Y-m-d H:i:s'))
+            ->indate()
             ->paginate(10);
         return view('pages.home', ['actions' => $actions]);
     }
 
-    public function category()
+    public function category(Request $request)
     {
-        return view('pages.category');
+        $actions = Category::where('code', '=', $request->category_code)->first()
+            ->actions()->with('tags','brand','category')
+            ->indate()
+            ->get();
+        return view('pages.category',[
+            'actions' => $actions,
+            'category' => $request->category_code
+            ]);
     }
 
     public function show(Request $request)

@@ -19,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
 
         View::composer(
             'widgets.categories_list', function ($view) {
-            $categories = Category::all();
+            $categories = Category::whereHas('actions', function($query){
+                $query->indate();
+            })->get();
             $view->with([
                 'categories' => $categories
             ]);
