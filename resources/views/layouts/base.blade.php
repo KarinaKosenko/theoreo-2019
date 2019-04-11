@@ -60,20 +60,20 @@
     @show
 
 <main class="main" role="main">
-    <div class="wrapper">
-        <div class="container-fluid">
 
-            @section('sort_cat')
-                @include('widgets.sorting')
-            @show
+        <div class="wrapper">
+            <div id="content" class="container-fluid">
+                @section('sort_cat')
+                    @include('widgets.sorting')
+                @show
 
-            @yield('content')
+                @yield('content')
 
             @section('button_load')
                 {{--@include('widgets.button_loader')--}}
             @show
+            </div>
         </div>
-    </div>
 </main>
 
 @include('blocks.footer')

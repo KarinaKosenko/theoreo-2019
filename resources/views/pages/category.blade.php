@@ -155,7 +155,7 @@
 @push('head-scripts')
     <script>
         window.SETTING = {
-            "activeCategory": "{{$category}}"
+            "activeCategory": "{{$category ?? ''}}"
         }
     </script>
 @endpush
