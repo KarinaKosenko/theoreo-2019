@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
     @stack('styles')
     @stack('head-scripts')
-
+    <script>window.SETTING = {"activeCategory": "{{$category ?? ''}}"}</script>
 </head>
 <body>
 <noscript>
@@ -82,7 +82,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
-<script src="{{asset('js/main.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 @stack('botton-scripts')
 
