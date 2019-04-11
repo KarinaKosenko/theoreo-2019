@@ -26,9 +26,9 @@ class ActionFilter
 
         $filters = [
             ['title', $this->search_text],
-            ['title', $this->search_text . '%'],
+            ['title', '%' . $this->search_text . '%'],
             ['text', $this->search_text],
-            ['text', $this->search_text . '%'],
+            ['text', '%' . $this->search_text . '%'],
         ];
 
         foreach ($filters as $filter) {
