@@ -1,10 +1,20 @@
 <div class="col-lg-10 col-md-10 col-sm-10 hidden-xs pull-right search-form-big anim js-search-form">
-    <form action="" class="search-form" role="search">
+    <form id="searchForm" action="" class="search-form" role="search">
         <div class="input-group">
-            <input type="text" class="search-form__input form-control anim" placeholder="Поиск">
+            <input type="text"
+                   class="search-form__input form-control anim"
+                   placeholder="Поиск"
+                   name="search_text"
+                   value="{{$search_text ?? ''}}"
+            >
             <span class="input-group-btn">
-							    <button role="button" class="btn btn-link search-form__submit anim" type="button"><i class="ico ico-search"></i></button>
-							  </span>
+				<button role="button"
+                        class="btn btn-link search-form__submit anim"
+                        type="submit"
+                >
+                    <i class="ico ico-search"></i>
+                </button>
+			</span>
         </div>
     </form>
 </div>
@@ -52,3 +62,35 @@
 							<i class="ico ico-close-light"></i>
 						</span>
 </div>
+@push('botton-scripts')
+<script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script>
+    $(()=>{
+        $('#searchForm').on('submit', e =>{
+            const text=$('[name="search_text"]').val();
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            e.stopPropagation();
+            e.preventDefault();
+
+            const postReq = $.post('/action/search',{
+                text:text
+            });
+
+            postReq.then(data =>{
+                $('#content').html(data);
+            }, error=>{
+                console.log(data);
+            });
+        });
+    });
+</script>
+@endpush

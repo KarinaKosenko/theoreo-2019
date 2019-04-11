@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
     @stack('styles')
     @stack('head-scripts')
-
+    <script>window.SETTING = {"activeCategory": "{{$category ?? ''}}"}</script>
 </head>
 <body>
 <noscript>
@@ -60,20 +60,20 @@
     @show
 
 <main class="main" role="main">
-    <div class="wrapper">
-        <div class="container-fluid">
 
-            @section('sort_cat')
-                @include('widgets.sorting')
-            @show
+        <div class="wrapper">
+            <div id="content" class="container-fluid">
+                @section('sort_cat')
+                    @include('widgets.sorting')
+                @show
 
-            @yield('content')
+                @yield('content')
 
             @section('button_load')
                 {{--@include('widgets.button_loader')--}}
             @show
+            </div>
         </div>
-    </div>
 </main>
 
 @include('blocks.footer')
@@ -82,7 +82,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
-<script src="{{asset('js/main.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 @stack('botton-scripts')
 

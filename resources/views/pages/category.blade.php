@@ -152,11 +152,4 @@
     </script>
 @endpush
 
-@push('head-scripts')
-    <script>
-        window.SETTING = {
-            "activeCategory": "{{$category}}"
-        }
-    </script>
-@endpush
 

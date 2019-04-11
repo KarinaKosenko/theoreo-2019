@@ -94,20 +94,20 @@ $(document).ready(function() {
 
 
 
-var $carousel = $('.carousel');
-$carousel.owlCarousel({
-	pagination : false,
-	items : 3,
-	itemsCustom : false,
-	itemsDesktop : [1199,3],
-	itemsDesktopSmall : [992,3],
-	itemsTablet: [768,2],
-	itemsTabletSmall: false,
-	itemsMobile : [320,1],
-	singleItem : false,
-	itemsScaleUp : false,
-	margin: 0
-});
+// let $carousel = $('.carousel');
+// $carousel.owlCarousel({
+// 	pagination : false,
+// 	items : 3,
+// 	itemsCustom : false,
+// 	itemsDesktop : [1199,3],
+// 	itemsDesktopSmall : [992,3],
+// 	itemsTablet: [768,2],
+// 	itemsTabletSmall: false,
+// 	itemsMobile : [320,1],
+// 	singleItem : false,
+// 	itemsScaleUp : false,
+// 	margin: 0
+// });
 
 
 
@@ -384,13 +384,7 @@ http://grigorev.pw
 			message.init(msg,cls);
 		},
 		init: function(msg, cls) {
-			$main.append('
-				<div class="notice notice--'+cls+'" style="opacity:0;">
-			        <div class="container text-center">
-			            '+msg+'
-			        </div>
-			    </div>
-			');
+			$main.append('<div class="notice notice--'+cls+'" style="opacity:0;"><div class="container text-center">'+msg+'</div></div>');
 
 			var height_notice = $('.notice').height();
 			$('.notice').css('bottom', '-'+height_notice+'px');
@@ -444,9 +438,9 @@ if($('div').is(table)) {
 /*
 запускаем tooltip bootstrap
 ------------------------------------------------------------------ */
-	$(function () {
-        $("[data-toggle='tooltip']").tooltip();
-	});
+	// $(function () {
+     //    $("[data-toggle='tooltip']").tooltip();
+	// });
 
 });
 

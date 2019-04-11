@@ -12,7 +12,6 @@ ymaps.ready(function () {
     });
 
     points.forEach(function (point) {
-        console.log(point);
         pointCollection.add(new ymaps.Placemark(point,{
             balloonContentHeader: point[2]
         }));
