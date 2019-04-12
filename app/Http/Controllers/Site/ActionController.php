@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Site;
 
 use App\Custom\Classes\ActionFilter;
-use App\Models\{Action, Category};
+use App\Models\{
+    Action, Brand, Category
+};
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -59,9 +61,15 @@ class ActionController extends Controller
         }
     }
 
-    public function brand()
+    public function brand(Request $request)
     {
-        return view('pages.brand');
+        $brand = Brand::where('code', '=', $request->code)
+            ->first();
+        $actions = Brand::where('code', '=', $request->code)->first()
+            ->actions()->with('tags', 'brand', 'category')
+            ->indate()
+            ->get();
+        return view('pages.brand', ['actions' => $actions, 'brand' => $brand]);
     }
 
     public function search(Request $request)

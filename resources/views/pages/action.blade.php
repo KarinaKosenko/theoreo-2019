@@ -31,7 +31,9 @@
                     </div>
                 </div>
                 <div class="sidebar__item">
-                    <strong>{{$action->brand->name}}</strong>
+                    <strong>
+                        <a class="brand" href="{{route('site.action.brand',['code'=>$action->brand->code])}}">{{$action->brand->name}}</a>
+                    </strong>
                 </div>
             </div>
             <div class="col-xs-24 col-sm-16">

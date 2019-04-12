@@ -15,7 +15,7 @@ class Brand extends Model {
 		return $this->belongsToMany( 'App\Models\City' );
 	}
 
-	public function action() {
+	public function actions() {
 		return $this->hasMany( 'App\Models\Action' );
 	}
 
