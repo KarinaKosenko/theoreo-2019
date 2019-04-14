@@ -42,9 +42,15 @@ Route::group( [ 'prefix' => 'region' ], function () {
 	Route::post( 'add', 'RegionController@addRegion' )->name( 'addRegion' );
 } );
 
-Route::group( [ 'prefix' => 'country' ], function () {
-	Route::get( 'add', 'CountryController@formAddCountry' )->name( 'formAddCountry' );
-	Route::post( 'add', 'CountryController@addCountry' )->name( 'addCountry' );
+Route::group( [ 'prefix' => 'countries' ], function () {
+	Route::get( 'create', 'CountryController@formAddCountry' )->name( 'createCountry' );
+	Route::get( '', 'CountryController@index' )->name( 'indexCountry' );
+	Route::post( '', 'CountryController@store' )->name( 'storeCountry' );
+	Route::get( 'show/{id}', 'CountryController@show' )->name( 'showCountry' );
+	Route::get( '{id}/edit', 'CountryController@edit' )->name( 'editCountry' );
+	Route::put( '', 'CountryController@update' )->name( 'updateCountry' );
+	Route::delete( '', 'CountryController@destroy' )->name( 'destroyCountry' );
+	Route::get( 'destroy', 'CountryController@destroyForm' )->name( 'destroyFormCountry' );
 } );
 
 Route::group( [ 'prefix' => 'tag' ], function () {
