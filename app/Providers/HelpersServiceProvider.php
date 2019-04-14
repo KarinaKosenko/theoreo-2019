@@ -30,5 +30,7 @@ class HelpersServiceProvider extends ServiceProvider
         require_once(app_path(''). '/Parser/Method/Groups/Get.php');
         require_once(app_path(''). '/Parser/Method/Newsfeed/Get.php');
         require_once(app_path(''). '/Parser/Object/Group.php');
+        require_once(app_path(''). '/Parser/Object/User.php');
+        require_once(app_path(''). '/Parser/Object/Post.php');
     }
 }

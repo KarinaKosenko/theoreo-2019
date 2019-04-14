@@ -4,18 +4,28 @@
 @section('content')
 
     <div>
-        @foreach($response['response']['items'] as $value)
-            <div>{{ $value['text'] }}</div><hr>
-          {{-- @foreach($tours['attachments'] as $inf)
-                <div>{{ $inf['link']['title'] }}</div>
-                <div>{{ $inf['link']['description'] }}</div>
 
-            @endforeach--}}
+       {{-- @foreach($response['response']['items'] as $value)
 
-        @endforeach
+                <div>{{ $value['text'] }}</div><hr>
+                <div>{{ $value['date'] }}</div><hr>
+
+                @foreach($value['attachments'] as $photo)
+
+                    @if($photo['type'] == 'photo')
+                        @foreach($photo['photo']['sizes'] as $photos)
+                            @if($photos['type'] == 'q')
+                                <div><img src="{{ $photos['url'] }}"></div><hr>
+                            @endif
+                        @endforeach
+                   @endif
+
+                @endforeach
+
+        @endforeach--}}
     </div>
 
-    <pre>{{ print_r($response) }}</pre>
+<pre>{{ print_r($result) }}</pre>
 
 @endsection
 

@@ -13,6 +13,9 @@
         <tr>
             <td>{{ $groups['id'] }}</td>
             <td>{{ $groups['name'] }}</td>
+            <td>{{ $groups['description'] }}</td>
+            {{--<td>{{ $groups['city']['title'] }}</td>--}}
+            <td><img src="{{ $groups['photo_50'] }}"></td>
            {{-- <td>{{ $groups['city']['title'] }}</td>--}}
 
         </tr>
