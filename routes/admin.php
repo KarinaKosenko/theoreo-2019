@@ -42,15 +42,19 @@ Route::group( [ 'prefix' => 'region' ], function () {
 	Route::post( 'add', 'RegionController@addRegion' )->name( 'addRegion' );
 } );
 
-Route::group( [ 'prefix' => 'countries' ], function () {
-	Route::get( 'create', 'CountryController@formAddCountry' )->name( 'createCountry' );
-	Route::get( '', 'CountryController@index' )->name( 'indexCountry' );
-	Route::post( '', 'CountryController@store' )->name( 'storeCountry' );
-	Route::get( 'show/{id}', 'CountryController@show' )->name( 'showCountry' );
-	Route::get( '{id}/edit', 'CountryController@edit' )->name( 'editCountry' );
-	Route::put( '', 'CountryController@update' )->name( 'updateCountry' );
-	Route::delete( '', 'CountryController@destroy' )->name( 'destroyCountry' );
-	Route::get( 'destroy', 'CountryController@destroyForm' )->name( 'destroyFormCountry' );
+Route::group( [], function () {
+	Route::resources( [
+		'countries' => 'CountryController',
+	] );
+//	Route::get( '', 'index' )->name( 'index' );
+//
+//
+//	Route::get( 'create', 'CountryController@formAddCountry' )->name( 'createCountry' );
+//	Route::post( '', 'CountryController@store' )->name( 'storeCountry' );
+//	Route::get( '{id}', 'CountryController@show' )->name( 'showCountry' );
+//	Route::get( '{id}/edit', 'CountryController@edit' )->name( 'editCountry' );
+//	Route::put( '{id}/edit', 'CountryController@update' )->name( 'updateCountry' );
+//	Route::delete( '{id}', 'CountryController@destroy' )->name( 'destroyCountry' );
 } );
 
 Route::group( [ 'prefix' => 'tag' ], function () {

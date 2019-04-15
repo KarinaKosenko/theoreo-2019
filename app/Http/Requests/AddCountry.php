@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class AddCountry extends FormRequest {
 	/**
@@ -20,6 +21,10 @@ class AddCountry extends FormRequest {
 	 * @return array
 	 */
 	public function rules() {
+
+		if ( $this->get( 'method' ) == 'Назад' ) {
+			return [];
+		}
 		return [
 			'name'       => 'required|min:2|max:50|unique:countries',
 		];
