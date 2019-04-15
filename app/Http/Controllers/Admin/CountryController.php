@@ -57,9 +57,6 @@ class CountryController extends Controller {
 	public function update( AddCountry $request, $id ) {
 		$name   = $request->input( 'name' );
 		$method = $request->input( 'method' );
-		if ( $method == 'Назад' ) {
-			return Redirect::to( route( $this->name . 'index' ) );
-		}
 
 		$single = Country::findOrFail( $id );
 		try {

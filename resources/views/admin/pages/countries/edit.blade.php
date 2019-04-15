@@ -24,7 +24,7 @@
 
                 <input type="submit" name="method" value="Применить">
                 <input type="submit" name="method" value="Сохранить">
-                <input type="submit" name="method" value="Назад">
+                <button onclick="history.back(); return false;">Назад</button>
             </form>
         </section>
     </div>

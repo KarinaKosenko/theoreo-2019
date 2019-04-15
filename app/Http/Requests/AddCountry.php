@@ -22,9 +22,6 @@ class AddCountry extends FormRequest {
 	 */
 	public function rules() {
 
-		if ( $this->get( 'method' ) == 'Назад' ) {
-			return [];
-		}
 		return [
 			'name'       => 'required|min:2|max:50|unique:countries',
 		];
