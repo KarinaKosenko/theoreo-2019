@@ -6,6 +6,7 @@ use App\Custom\Classes\ActionFilter;
 use App\Models\{
     Action, Brand, Category
 };
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -63,13 +64,18 @@ class ActionController extends Controller
 
     public function brand(Request $request)
     {
-        $brand = Brand::where('code', '=', $request->code)
-            ->first();
-        $actions = Brand::where('code', '=', $request->code)->first()
-            ->actions()->with('tags', 'brand', 'category')
-            ->indate()
-            ->get();
-        return view('pages.brand', ['actions' => $actions, 'brand' => $brand]);
+        try {
+            $brand = Brand::where('code', '=', $request->code)
+                ->firstOrFail();
+            $actions = Brand::where('code', '=', $request->code)->firstOrFail()
+                ->actions()->with('tags', 'brand', 'category')
+                ->indate()
+                ->get();
+            return view('pages.brand', ['actions' => $actions, 'brand' => $brand]);
+
+        } catch (ModelNotFoundException $e) {
+            return view('pages.404');
+        }
     }
 
     public function search(Request $request)

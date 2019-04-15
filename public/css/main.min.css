@@ -720,7 +720,7 @@ a.brand {
 .content-block {
   padding: 40px 0;
   border-bottom: 2px solid #f0f0f0; }
-  .content-block:first-child {
+  .content-block { /*:first-child {  */
     border-top: 2px solid #f0f0f0; }
   @media screen and (min-width: 1600px) {
     .content-block {
