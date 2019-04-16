@@ -40,3 +40,12 @@ function get_geoposition($address)
     $geo['address'] = $address;
     return $geo;
 }
+
+function get_sort($param)
+{
+    $sort = 'age';
+    if ($param == 'rating') {
+        $sort = 'rating';
+    }
+    return $sort;
+}

@@ -33,4 +33,13 @@ class Action extends Model
         return $query->where('date_end', '>=', date('Y-m-d'))
             ->where('date_start', '<=', date('Y-m-d H:i:s'));
     }
+
+    function scopeSort($query, $sort)
+    {
+        $field='created_at';
+        if($sort == 'rating'){
+            $field='rating';
+        }
+        return $query->orderBy($field,'DESC');
+    }
 }
