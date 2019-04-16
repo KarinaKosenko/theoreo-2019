@@ -3,13 +3,14 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Models\Photo_model;
-use App\Models\Vk_action;
 
+use App\Models\Vk_action;
+use App\Models\Vk_action_photo;
 use App\Parser\Authorise;
 use App\Parser\Method\Newsfeed\Get as NewsfeedGet;
 use App\Parser\Method\Groups\Get as GroupsGet;
 use App\Parser\Method\Wall\Get as WallGet;
+use App\Parser\Object\Group;
 use App\Parser\Object\User;
 
 use App\Parser\Vk;
@@ -78,20 +79,23 @@ class ParserController extends Controller
 
     public function vkNewsfeedGet(Vk $vk)
     {
-        $date_max = Vk_action::get()->max('date_text');
-        $date_max = $date_max + 1;
+       if($date_max = Vk_action::get()->max('date_unix')){
+           $date_max = $date_max + 1;
+       }else{
+           $date_max = time() - 3*24*60*60;
+       }
+
         $newsfeedGetMethod = new NewsfeedGet();
 
         $fields = [];
-        $fields[] = User::FIELD_CITY;
-        $fields[] = User::FIELD_PHOTO_50;
+        $fields[] = Group::FIELD_CITY;
+        $fields[] = Group::FIELD_PHOTO_50;
 
         $newsfeedGetMethod->setFilters('post','photo')
             ->setStartTime($date_max)
             ->setSourceIds(config('vk_parser.vk_owner_ids'))
             ->setCount(10)
             ->setFields($fields);
-
 
         $vk::setAccessToken(config('vk_parser.vk_default.access_token'));
 
@@ -100,29 +104,22 @@ class ParserController extends Controller
         $str_stop = config('vk_parser.vk_stop_text');
         $str = config('vk_parser.vk_text');
 
-       /*$photo_model = new Photo_model();*/
-
         foreach($response['response']['items'] as $value){
         $content_stop = Str::contains($value['text'], $str_stop);
-
         $content = Str::contains($value['text'], $str);
-          if(!$content_stop && $content){
+
+        if(!$content_stop && $content){
              Vk_action::create(['context' => $value['text'], 'date_unix' => $value['date']]);
-              /*$vk_table->context = $value['text'];
-              $vk_table->date_text = $value['date'];*/
 
             foreach($value['attachments'] as $photo){
                 if($photo['type'] == 'photo'){
                     foreach($photo['photo']['sizes'] as $photos){
                         if($photos['type'] == 'q')
-                            Photo_model::create(['photo', $photos['url']]);
-                            /*$photo_model->photo = $photos['url'];*/
 
+                          Vk_action_photo::create(['photo' => $photos['url']]);
                     }
                 }
             }
-
-              /*$photo_model->save();*/
           }else{
               continue;
           }
@@ -130,7 +127,5 @@ class ParserController extends Controller
 
         return redirect()->route('home');
     }
-
-
 
 }

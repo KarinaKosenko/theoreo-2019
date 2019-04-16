@@ -14,7 +14,7 @@ class CreateVkActionsTable extends Migration
     public function up()
     {
         Schema::create('vk_actions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->text( 'context' );
             $table->integer( 'date_unix')->nullable();
 
