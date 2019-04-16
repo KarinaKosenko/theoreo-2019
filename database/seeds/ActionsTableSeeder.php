@@ -68,7 +68,7 @@ class ActionsTableSeeder extends Seeder
         foreach ($this->actions as $action) {
             $date_start = Date::create('2019', '3', '1')
                 ->getTimestamp()+mt_rand(0,40)*24*3600;
-            $date_end = $date_start +mt_rand(30,60)*24*3600;
+            $date_end = $date_start +mt_rand(60,80)*24*3600;
             DB::table('actions')->insert([
                 'title' => $action['title'],
                 'text' => $action['text'],

@@ -13,7 +13,7 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/action/{action_alias?}', 'ActionController@show')
         ->where('action_alias', '[a-z0-9-]+')
         ->name('site.action.show');
-    Route::get('/brand/{brand_alias?}', 'ActionController@brand')
-        ->where('brand_alias', '[a-z-]+')
+    Route::get('/brand/{code}', 'ActionController@brand')
+        ->where('code', '[a-z-]+')
         ->name('site.action.brand');
 });

@@ -16,7 +16,9 @@
             </div>
             <div class="col-sm-19">
                 <div class="sidebar__item">
-                    <strong>{{$action->brand->name}}</strong>
+                    <strong>
+                        <a class="brand" href="{{route('site.action.brand',['code'=>$action->brand->code])}}">{{$action->brand->name}}</a>
+                    </strong>
                 </div>
                 <a role="link" href="{{route('site.action.show')}}/{{$action->code}}" class="content-block__heading">
                     <h2>{{ $action->title }}</h2>
