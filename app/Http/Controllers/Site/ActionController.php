@@ -15,27 +15,23 @@ class ActionController extends Controller
 {
     public function index(Request $request)
     {
-        $sort = get_sort($request->input('sort'));
-        $actions = Action::with(['tags', 'brand'])
-            ->indate()
-            ->sort($sort)
+        $actions = Action::indate()
+            ->sort($request->sort ?? 'age')
             ->paginate(10);
-        return view('pages.home', ['actions' => $actions, 'sort' => $sort]);
+        return view('pages.home', ['actions' => $actions, 'sort' => $request->sort ?? 'age']);
     }
 
     public function category(Request $request)
     {
-        $sort = get_sort($request->input('sort'));
         try {
             $actions = Category::where('code', '=', $request->category_code)->firstOrFail()
-                ->actions()->with('tags', 'brand', 'category')
-                ->indate()
-                ->sort($sort)
+                ->actions()->indate()
+                ->sort($request->sort ?? 'age')
                 ->get();
             return view('pages.category', [
                 'actions' => $actions,
                 'category' => $request->category_code,
-                'sort' => $sort
+                'sort' => $request->sort ?? 'age',
             ]);
         } catch (ModelNotFoundException $e) {
             return view('pages.404');
@@ -73,19 +69,18 @@ class ActionController extends Controller
 
     public function brand(Request $request)
     {
-        $sort = get_sort($request->input('sort'));
         try {
             $brand = Brand::where('code', '=', $request->code)
                 ->firstOrFail();
             $actions = Brand::where('code', '=', $request->code)->firstOrFail()
-                ->actions()->with('tags', 'brand', 'category')
+                ->actions()
                 ->indate()
-                ->sort($sort)
+                ->sort($request->sort ?? 'age')
                 ->get();
             return view('pages.brand', [
                 'actions' => $actions,
                 'brand' => $brand,
-                'sort' => $sort
+                'sort' => $request->sort ?? 'age',
             ]);
 
         } catch (ModelNotFoundException $e) {

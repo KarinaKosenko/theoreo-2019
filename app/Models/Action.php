@@ -8,6 +8,8 @@ class Action extends Model
 {
     protected $guarded = ['id', 'code', 'created_at', 'updated_at', 'deleted_at'];
 
+    protected $with = ['tags', 'brand', 'category'];
+
     public function tags()
     {
         return $this->belongsToMany('App\Models\Tag');
@@ -36,10 +38,10 @@ class Action extends Model
 
     function scopeSort($query, $sort)
     {
-        $field='created_at';
-        if($sort == 'rating'){
-            $field='rating';
+        $field = 'created_at';
+        if ($sort == 'rating') {
+            $field = 'rating';
         }
-        return $query->orderBy($field,'DESC');
+        return $query->orderBy($field, 'DESC');
     }
 }

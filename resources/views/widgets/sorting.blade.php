@@ -5,22 +5,22 @@
                 <div class="dropdown">
                     <a data-toggle="dropdown"
                        class="sort-category__link">
-                        @if($sort == 'age')
-                        По свежести
-                        @else
+                        @if($sort == 'rating')
                         По рейтингу
+                        @else
+                        По свежести
                         @endif
                         <i class="ico ico-arrow-down-grey sort-category__ico"></i>
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1"
-                            @if($sort == 'age')
-                               href="{{Request::url()}}?sort=rating">
-                                По рейтингу
+                            @if($sort == 'rating')
+                               href="{{Request::url()}}?sort=age">
+                               По свежести
                             @else
-                                href="{{Request::url()}}?sort=age">
-                                По свежести
+                               href="{{Request::url()}}?sort=rating">
+                               По рейтингу
                             @endif
                             </a>
                         </li>
@@ -31,17 +31,15 @@
             <div class="sort text-right hidden-xs">
 								<span class="sort__text">
 									Сортировать по:
-									<span class="sort__by"><a
-                                        @if($sort == 'rating')
-                                        href="{{Request::url()}}?sort=age"
-                                        @endif
-                                        >свежести</a></span> и
-									<span class="sort__by"><a
-                                        @if($sort == 'age')
-                                        href="{{Request::url()}}?sort=rating"
-                                        @endif
-                                        >рейтингу</a></span>
-								</span>
+                                    @if($sort == 'rating')
+                                        <span><a href="{{Request::url()}}?sort=age">свежести</a></span>
+                                         или
+                                        <span class="sort__by"><strong>рейтингу</strong></span>
+                                    @else
+                                        <span class="sort__by"><strong>свежести</strong></span> или
+                                        <span><a href="{{Request::url()}}?sort=rating">рейтингу</a>
+                                    @endif
+                                </span>
             </div>
         </div>
     </div>
