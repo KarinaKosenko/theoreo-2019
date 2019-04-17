@@ -59,9 +59,9 @@
     @show
 
 <main class="main" role="main">
-
+    <div id="content" class="container-fluid">
         <div class="wrapper">
-            <div id="content" class="container-fluid">
+
                 @section('sort_cat')
                     @include('widgets.sorting')
                 @show
@@ -72,7 +72,7 @@
                 {{--@include('widgets.button_loader')--}}
             @show
             </div>
-        </div>
+     </div>
 </main>
 
 @include('blocks.footer')

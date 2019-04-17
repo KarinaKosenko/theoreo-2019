@@ -24,4 +24,6 @@
                 @include('widgets.action_std')
           @endforeach
         </div>
+@include('widgets.pagination')
+
 @endsection

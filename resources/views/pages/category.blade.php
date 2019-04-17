@@ -69,6 +69,7 @@
                     <div id="clear"></div>
 
                 </div>
+                @include('widgets.pagination')
 
 @endsection
 @push('botton-scripts')

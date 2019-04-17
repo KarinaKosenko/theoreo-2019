@@ -5,7 +5,7 @@ namespace App\Custom\Classes;
 
 use App\Models\Action;
 
-class Similar
+class SimilarActions
 {
     protected $id = null;
     protected $tags = [];
