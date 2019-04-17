@@ -16,9 +16,9 @@
             @if (Session::has('message'))
                 <li>{!! session('message') !!}</li>
             @endif
-            <form method="post" action="<?= route( 'countries.store' ) ?>">
+            <form method="post" action="<?= route( 'tags.store' ) ?>">
                 @csrf
-                <label for="name">Страна</label><br>
+                <label for="name">Тег</label><br>
                 <input type="text" name="name" id="name" value="{{old('name','')}}" required><br>
                 <input type="submit" value="Создать">
             </form>

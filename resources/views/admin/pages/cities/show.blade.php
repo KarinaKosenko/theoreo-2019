@@ -11,6 +11,7 @@
 
             Айди: {{$single->id}}<br>
             Название: {{$single->name}}<br>
+            Регион: {{$region->name}}<br>
             Код: {{$single->code}}<br>
             Дата создания: {{$single->created_at}}<br>
 

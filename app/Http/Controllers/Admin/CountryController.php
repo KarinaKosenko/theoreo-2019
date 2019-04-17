@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddCountry;
+use App\Http\Requests\EditCountry;
 use App\Models\Country;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -14,9 +15,10 @@ use Illuminate\Support\Str;
 class CountryController extends Controller {
 	protected $name = 'countries.';
 	protected $folderPath = 'admin.pages.countries.';
+	const QUERY_EXCEPTION_READABLE_MESSAGE = 2;
 
 	public function index() {
-		$all = Country::all();
+		$all = Country::orderBy( 'name', 'asc' )->get();
 
 		return view( $this->folderPath . 'index', [ 'all' => $all ] );
 	}
@@ -26,14 +28,13 @@ class CountryController extends Controller {
 	}
 
 	public function store( AddCountry $request ) {
-		$values         = $request->all();
-		$values['code'] = $values['name'];
+		$request->merge( [ 'code' => $request->name ] );
 
 		try {
-			Country::create( $values );
+			Country::create( $request->all() );
 			$message = 'Добавление выполнено успешно!';
 		} catch ( QueryException $exception ) {
-			$message = $exception->errorInfo[2];
+			$message = $exception->errorInfo[ self::QUERY_EXCEPTION_READABLE_MESSAGE ];
 		}
 
 		$request->session()->flash( 'message', $message );
@@ -54,18 +55,15 @@ class CountryController extends Controller {
 		return view( $this->folderPath . 'edit', [ 'single' => $single ] );
 	}
 
-	public function update( AddCountry $request, $id ) {
-		$name   = $request->input( 'name' );
+	public function update( EditCountry $request, $id ) {
 		$method = $request->input( 'method' );
 
 		$single = Country::findOrFail( $id );
 		try {
-			$single->name = $name;
-			$single->code = Str::slug( $name, '-' );
-			$single->save();
+			$single->update( [ 'name' => $request->name, 'code' => $request->name ] );
 			$message = 'Обновление выполнено успешно!';
 		} catch ( QueryException $exception ) {
-			$message = $exception->errorInfo[2];
+			$message = $exception->errorInfo[ self::QUERY_EXCEPTION_READABLE_MESSAGE ];
 		}
 
 		$request->session()->flash( 'message', $message );
@@ -86,7 +84,7 @@ class CountryController extends Controller {
 			$single->delete();
 			$message = 'Удаление выполнено успешно!';
 		} catch ( QueryException $exception ) {
-			$message = $exception->errorInfo[2];
+			$message = $exception->errorInfo[ self::QUERY_EXCEPTION_READABLE_MESSAGE ];
 		}
 
 		Session::flash( 'message', $message );

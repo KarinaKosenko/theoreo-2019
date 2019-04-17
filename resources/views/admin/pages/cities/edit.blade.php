@@ -16,11 +16,22 @@
             @if (Session::has('message'))
                 <li>{!! session('message') !!}</li>
             @endif
-            <form method="POST" action="<?= route( 'countries.update', [ 'id' => $single->id ] ) ?>">
+            <form method="POST" action="<?= route( 'cities.update', [ 'id' => $single->id ] ) ?>">
                 @csrf
                 @method('PUT')
-                <label for="name">Страна</label><br>
+                <label for="name">Город</label><br>
                 <input type="text" name="name" id="name" value="{{old('name',$single->name)}}" required><br>
+
+                <label for="region">Выберите регион, к которой относится город</label><br>
+                <select name="region_id" id="region">
+                    <option disabled>Регион</option>
+                    @if (!empty($regions))
+                        @foreach($regions as $region)
+                            <option @if ($region->id == $single->region_id) selected
+                                    @endif  value="{{$region->id}}">{{$region->name}}</option>
+                        @endforeach
+                    @endif
+                </select><br>
 
                 <input type="hidden" name="currentID" value="{{$single->id}}">
                 <input type="submit" name="method" value="Применить">

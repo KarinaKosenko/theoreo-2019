@@ -16,12 +16,11 @@
             @if (Session::has('message'))
                 <li>{!! session('message') !!}</li>
             @endif
-            <form method="POST" action="<?= route( 'countries.update', [ 'id' => $single->id ] ) ?>">
+            <form method="POST" action="<?= route( 'categories.update', [ 'id' => $single->id ] ) ?>">
                 @csrf
                 @method('PUT')
-                <label for="name">Страна</label><br>
+                <label for="name">Категория</label><br>
                 <input type="text" name="name" id="name" value="{{old('name',$single->name)}}" required><br>
-
                 <input type="hidden" name="currentID" value="{{$single->id}}">
                 <input type="submit" name="method" value="Применить">
                 <input type="submit" name="method" value="Сохранить">

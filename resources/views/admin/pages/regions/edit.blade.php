@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Добавить регион
+                Редактировать
             </h1>
         </section>
 
@@ -12,24 +12,31 @@
                 <li>{{ $error }}</li>
             @endforeach
 
-            @if (!empty($message))
-                <p style="display: inline-block;border: 2px double red ;color:red">{{$message}}</p><br>
+
+            @if (Session::has('message'))
+                <li>{!! session('message') !!}</li>
             @endif
-            <form method="post" action="">
+            <form method="POST" action="<?= route( 'regions.update', [ 'id' => $single->id ] ) ?>">
                 @csrf
+                @method('PUT')
                 <label for="name">Регион</label><br>
-                <input type="text" name="name" id="name" value="{{old('name','')}}" required><br>
+                <input type="text" name="name" id="name" value="{{old('name',$single->name)}}" required><br>
 
                 <label for="country">Выберите страну, к которой относится регион</label><br>
                 <select name="country_id" id="country">
                     <option disabled>Страна</option>
                     @if (!empty($countries))
                         @foreach($countries as $country)
-                            <option value="{{$country->id}}">{{$country->name}}</option>
+                            <option @if ($country->id == $single->country_id) selected
+                                    @endif  value="{{$country->id}}">{{$country->name}}</option>
                         @endforeach
                     @endif
                 </select><br>
-                <input type="submit" value="Добавить">
+
+                <input type="hidden" name="currentID" value="{{$single->id}}">
+                <input type="submit" name="method" value="Применить">
+                <input type="submit" name="method" value="Сохранить">
+                <button onclick="history.back(); return false;">Назад</button>
             </form>
         </section>
     </div>

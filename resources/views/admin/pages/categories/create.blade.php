@@ -3,7 +3,7 @@
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
-                Добавить категорию
+                Добавить
             </h1>
         </section>
 
@@ -12,14 +12,15 @@
                 <li>{{ $error }}</li>
             @endforeach
 
-            @if (!empty($message))
-                <p style="display: inline-block;border: 2px double red ;color:red">{{$message}}</p><br>
+
+            @if (Session::has('message'))
+                <li>{!! session('message') !!}</li>
             @endif
-            <form method="post" action="">
+            <form method="post" action="<?= route( 'categories.store' ) ?>">
                 @csrf
                 <label for="name">Категория</label><br>
                 <input type="text" name="name" id="name" value="{{old('name','')}}" required><br>
-                <input type="submit" value="Добавить">
+                <input type="submit" value="Создать">
             </form>
         </section>
     </div>

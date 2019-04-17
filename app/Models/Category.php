@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model {
 	protected $guarded = [ 'id', 'created_at', 'updated_at', 'deleted_at' ];
@@ -13,5 +14,9 @@ class Category extends Model {
 
 	public function actions() {
 		return $this->hasMany( 'App\Models\Action' );
+	}
+
+	public function setCodeAttribute( $value ) {
+		$this->attributes['code'] = Str::slug( $value, '-' );
 	}
 }
