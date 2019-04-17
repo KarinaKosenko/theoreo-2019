@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Site;
 
 use App\Custom\Classes\ActionFilter;
+use App\Custom\Classes\Similar;
 use App\Models\{
     Action, Brand, Category
 };
@@ -60,8 +61,14 @@ class ActionController extends Controller
             if ($point) {
                 $geo[] = $point;
             }
+            $similars=(new Similar($action))->get();
             return view('pages.action',
-                ['action' => $action, 'geo' => $geo, 'addresses' => $addresses]);
+                [
+                    'action' => $action,
+                    'geo' => $geo,
+                    'addresses' => $addresses,
+                    'similars' => $similars,
+                ]);
         } else {
             return view('pages.404');
         }

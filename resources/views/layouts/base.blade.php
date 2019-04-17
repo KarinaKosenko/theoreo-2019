@@ -27,7 +27,6 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.min.css')}}">
-
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
     @stack('styles')
@@ -78,9 +77,8 @@
 
 @include('blocks.footer')
 @include('modals.city_form')
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('jquery-1.11.3.min.js');</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="{{asset('js/owl-carousel/owl.carousel.min.js')}}"></script>
 <script src="{{asset('js/plugins.min.js')}}"></script>
 <script src="{{asset('js/main.js')}}"></script>
 @stack('botton-scripts')
