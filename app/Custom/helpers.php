@@ -40,3 +40,4 @@ function get_geoposition($address)
     $geo['address'] = $address;
     return $geo;
 }
+

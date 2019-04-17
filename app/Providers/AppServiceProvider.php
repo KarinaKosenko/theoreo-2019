@@ -28,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         }
 
         );
+        View::share(['sort' =>'age']);
     }
 
     /**

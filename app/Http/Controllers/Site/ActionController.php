@@ -13,24 +13,29 @@ use App\Http\Controllers\Controller;
 
 class ActionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $actions = Action::with(['tags', 'brand'])
-            ->indate()
+        $actions = Action::indate()
+            ->sort($request->sort ?? 'age')
             ->paginate(10);
-        return view('pages.home', ['actions' => $actions]);
+        return view('pages.home', ['actions' => $actions, 'sort' => $request->sort ?? 'age']);
     }
 
     public function category(Request $request)
     {
-        $actions = Category::where('code', '=', $request->category_code)->first()
-            ->actions()->with('tags', 'brand', 'category')
-            ->indate()
-            ->get();
-        return view('pages.category', [
-            'actions' => $actions,
-            'category' => $request->category_code
-        ]);
+        try {
+            $actions = Category::where('code', '=', $request->category_code)->firstOrFail()
+                ->actions()->indate()
+                ->sort($request->sort ?? 'age')
+                ->get();
+            return view('pages.category', [
+                'actions' => $actions,
+                'category' => $request->category_code,
+                'sort' => $request->sort ?? 'age',
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return view('pages.404');
+        }
     }
 
     public function show(Request $request)
@@ -68,10 +73,15 @@ class ActionController extends Controller
             $brand = Brand::where('code', '=', $request->code)
                 ->firstOrFail();
             $actions = Brand::where('code', '=', $request->code)->firstOrFail()
-                ->actions()->with('tags', 'brand', 'category')
+                ->actions()
                 ->indate()
+                ->sort($request->sort ?? 'age')
                 ->get();
-            return view('pages.brand', ['actions' => $actions, 'brand' => $brand]);
+            return view('pages.brand', [
+                'actions' => $actions,
+                'brand' => $brand,
+                'sort' => $request->sort ?? 'age',
+            ]);
 
         } catch (ModelNotFoundException $e) {
             return view('pages.404');
