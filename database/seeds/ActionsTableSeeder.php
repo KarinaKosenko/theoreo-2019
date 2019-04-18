@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
@@ -304,6 +305,8 @@ class ActionsTableSeeder extends Seeder
         ],
     ];
 
+
+
     /**
      * Run the database seeds.
      *
@@ -328,6 +331,30 @@ class ActionsTableSeeder extends Seeder
                 'category_id' => $action['cat'],
                 'address' => $action['address'],
                 'phone' => $action['phone'],
+                'created_at' => date('Y-m-d H:i:s',$date_start + mt_rand(-10,-5)*24*3600)
+            ]);
+        }
+
+        $faker=Factory::create('ru_RU');
+        $i=0;
+        while ($i++ <100){
+            $title=$faker->realText(mt_rand(20,40));
+            $date_start = Date::create('2019', '1', '1')
+                    ->getTimestamp()+mt_rand(0,40)*24*3600;
+            $date_end = $date_start +mt_rand(60,80)*24*3600;
+            DB::table('actions')->insert([
+                'title' => $title,
+                'text' => $faker->realText(mt_rand(400,600)),
+                'code' => Str::slug($title),
+                'date_start' => date('Y-m-d H:i:s',$date_start),
+                'date_end' => date('Y-m-d H:i:s',$date_end),
+                'rating' => mt_rand(100, 1000) / 100,
+                'is_paid' => mt_rand(0, 1),
+                'brand_id' => mt_rand(1, 5),
+                'img' => $faker->imageUrl($width = 640, $height = 480),//$img[$i-1],
+                'category_id' => mt_rand(1, 18),
+                'address' => $faker->address,
+                'phone' => $faker->phoneNumber,
                 'created_at' => date('Y-m-d H:i:s',$date_start + mt_rand(-10,-5)*24*3600)
             ]);
         }
