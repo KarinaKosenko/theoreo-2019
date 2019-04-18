@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/bootstrap-theme.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/main.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/custom.css')}}">
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('js/owl-carousel/owl.theme.css')}}">
     @stack('styles')

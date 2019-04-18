@@ -1,5 +1,5 @@
-<div style="text-align: center">
-    <div style="display: inline-block;">
+<div class="cont-flex">
+    <div class="center-block pagin-block">
         {{$actions->links()}}
     </div>
 </div>
