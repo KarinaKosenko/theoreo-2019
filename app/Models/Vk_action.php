@@ -10,7 +10,7 @@ class Vk_action extends Model
          'created_at', 'updated_at'
     ];
 
-    public function vk_action_photo()
+    public function vk_action_photos()
     {
         return $this->hasOne('App\Models\Vk_action_photo');
     }

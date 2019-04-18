@@ -8,13 +8,10 @@ use App\Models\Vk_action;
 use App\Models\Vk_action_photo;
 use App\Parser\Authorise;
 use App\Parser\Method\Newsfeed\Get as NewsfeedGet;
-use App\Parser\Method\Groups\Get as GroupsGet;
-use App\Parser\Method\Wall\Get as WallGet;
 use App\Parser\Object\Group;
 use App\Parser\Object\User;
 
 use App\Parser\Vk;
-use ATehnix\LaravelVkRequester\Models\VkRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -46,36 +43,6 @@ class ParserController extends Controller
         return view('pages.vk_token')->with('str', $str);
     }
 
-    /*public function vkWallGet(Vk $vk)
-    {
-        $wallGetMethod = new WallGet();
-        $wallGetMethod->setOwnerId(-5408278)
-            ->setOffset(0)
-            ->setCount(2)
-            ->setFilter(WallGet::FILTER_ALL)
-            ->setExtended(WallGet::EXTENDED_YES);
-        dump($wallGetMethod);
-        $vk::setAccessToken('348fc45fddf139215da1ea73ba69c5a44be89e0e0f1d2ae22ab07bcf94cea162a9bea7548cd019923434d');
-        $response = $vk::api($wallGetMethod);
-
-        return view('pages.vk_wall')->with('response', $response);
-    }*/
-
-    /*public function vkGroupsGet(Vk $vk)
-    {
-        $groupsGetMethod = new GroupsGet();
-        $groupsGetMethod->setUserId(303789940)
-            ->setExtended(GroupsGet::EXTENDED_EXTENDED)
-            ->setFilter(GroupsGet::FILTER_GROUPS)
-            ->setFields(['city','description'])
-            ->setOffset(0)
-            ->setCount(100);
-
-        $vk::setAccessToken('348fc45fddf139215da1ea73ba69c5a44be89e0e0f1d2ae22ab07bcf94cea162a9bea7548cd019923434d');
-        $response = $vk::api($groupsGetMethod);
-        dump($response);
-        return view('pages.vk_groups')->with('response', $response);
-    }*/
 
     public function vkNewsfeedGet(Vk $vk)
     {
@@ -88,13 +55,13 @@ class ParserController extends Controller
         $newsfeedGetMethod = new NewsfeedGet();
 
         $fields = [];
-        $fields[] = Group::FIELD_CITY;
-        $fields[] = Group::FIELD_PHOTO_50;
+        $fields[] = User::FIELD_CITY;
+        $fields[] = User::FIELD_PHOTO_50;
 
         $newsfeedGetMethod->setFilters('post','photo')
             ->setStartTime($date_max)
             ->setSourceIds(config('vk_parser.vk_owner_ids'))
-            ->setCount(10)
+            ->setCount(50)
             ->setFields($fields);
 
         $vk::setAccessToken(config('vk_parser.vk_default.access_token'));
@@ -108,24 +75,27 @@ class ParserController extends Controller
         $content_stop = Str::contains($value['text'], $str_stop);
         $content = Str::contains($value['text'], $str);
 
-        if(!$content_stop && $content){
-             Vk_action::create(['context' => $value['text'], 'date_unix' => $value['date']]);
+        if(!$content_stop && $content) {
+            $vk_model = Vk_action::create(['context' => $value['text'], 'date_unix' => $value['date']]);
 
-            foreach($value['attachments'] as $photo){
-                if($photo['type'] == 'photo'){
-                    foreach($photo['photo']['sizes'] as $photos){
-                        if($photos['type'] == 'q')
+            foreach ($value['attachments'] as $photo) {
 
-                          Vk_action_photo::create(['photo' => $photos['url']]);
+                if ($photo['type'] == 'photo') {
+                    foreach ($photo['photo']['sizes'] as $photos) {
+                        if ($photos['type'] == 'q' || $photos['type'] == 'm') {
+                            $vk_model->vk_action_photos()->save(new Vk_action_photo(['photo' => $photos['url']]));
+                        }
                     }
                 }
             }
-          }else{
+        }else{
               continue;
-          }
+            }
         }
 
-        return redirect()->route('home');
+
+      return redirect()->route('home');
+      /*return response(dump($response['response']['items']));*/
     }
 
 }
