@@ -21,17 +21,13 @@ class Base
             throw new \Exception('Нет такого поля');
         }
 
-        $return = $this;
-        switch ($prefix) {
-            case 'get':
-                $return = $this->$property;
-                break;
-            case 'set':
-                $this->$property = is_array($arguments[0]) ? implode(',', $arguments[0]) : (string) $arguments[0];
-                break;
-        }
-
-        return $return;
+       if( $prefix === 'get'){
+           return $this->$property;
+       }
+       elseif($prefix === 'set'){
+           $this->$property = is_array($arguments[0]) ? implode(',', $arguments[0]) : (string) $arguments[0];
+           return $this;
+       }
     }
 
     public function getProperties()

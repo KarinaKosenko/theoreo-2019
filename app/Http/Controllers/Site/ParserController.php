@@ -4,15 +4,10 @@
 namespace App\Http\Controllers\Site;
 
 
-use App\Models\Vk_action;
-use App\Models\Vk_action_photo;
-use App\Parser\Authorise;
+use App\Models\{Vk_action,Vk_action_photo};
+use App\Parser\{Authorise,Vk};
 use App\Parser\Method\Newsfeed\Get as NewsfeedGet;
-use App\Parser\Object\Group;
 use App\Parser\Object\User;
-
-use App\Parser\Vk;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
 
@@ -21,7 +16,7 @@ class ParserController extends Controller
     public function generateToken()
     {
         $vkAuht = new Authorise();
-        $vkAuht->setClientId('6919459')
+        $vkAuht->setClientId(config('vk_parser.vk_id'))
             ->setDisplay(Authorise::DISPLAY_PAGE)
             ->setRedirectUri(Authorise::REDIRECT_URI_BLANK)
             ->setResponseType(Authorise::RESPONSE_TYPE_TOKEN)
@@ -36,7 +31,7 @@ class ParserController extends Controller
                     Authorise::SCOPE_OFFLINE
                 ]
             )
-            ->setV(5.92);
+            ->setVersion(5.92);
 
         $str = $vkAuht->getAuthorizeUrl();
 

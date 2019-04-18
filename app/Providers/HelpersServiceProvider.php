@@ -26,8 +26,6 @@ class HelpersServiceProvider extends ServiceProvider
         require_once(app_path(''). '/Parser/Vk.php');
         require_once(app_path(''). '/Parser/Authorise.php');
         require_once(app_path(''). '/Parser/Method/Base.php');
-        require_once(app_path(''). '/Parser/Method/Wall/Get.php');
-        require_once(app_path(''). '/Parser/Method/Groups/Get.php');
         require_once(app_path(''). '/Parser/Method/Newsfeed/Get.php');
         require_once(app_path(''). '/Parser/Object/Group.php');
         require_once(app_path(''). '/Parser/Object/User.php');

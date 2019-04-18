@@ -56,7 +56,7 @@ class Authorise
     const RESPONSE_TYPE_CODE  = 'code';
     const RESPONSE_TYPE_TOKEN = 'token';
 
-    protected $v;
+    protected $version;
 
     protected $state;
 
@@ -95,9 +95,9 @@ class Authorise
         return $this;
     }
 
-    public function setV($v)
+    public function setVersion($version)
     {
-        $this->v = $v;
+        $this->version = $version;
 
         return $this;
     }
