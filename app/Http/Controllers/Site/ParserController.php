@@ -75,7 +75,7 @@ class ParserController extends Controller
         $content_stop = Str::contains($value['text'], $str_stop);
         $content = Str::contains($value['text'], $str);
 
-        if(!$content_stop && $content) {
+          if(!$content_stop && $content) {
             $vk_model = Vk_action::create(['context' => $value['text'], 'date_unix' => $value['date']]);
 
             foreach ($value['attachments'] as $photo) {
@@ -88,13 +88,11 @@ class ParserController extends Controller
                     }
                 }
             }
-        }else{
-              continue;
-            }
+          }
         }
 
 
-      return redirect()->route('home');
+      return redirect()->route('site.action.index');
       /*return response(dump($response['response']['items']));*/
     }
 

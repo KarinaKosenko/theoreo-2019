@@ -1,6 +1,5 @@
 
 $(document).ready(function() {
-
 /* DELETE 16.11.2015
 *
 	function category(e) {
@@ -92,11 +91,9 @@ $(document).ready(function() {
 */
 
 
-
-
-var $carousel = $('.carousel');
+let $carousel = $('.carousel');
 $carousel.owlCarousel({
-	pagination : false,
+	pagination : true,
 	items : 3,
 	itemsCustom : false,
 	itemsDesktop : [1199,3],
@@ -384,13 +381,7 @@ http://grigorev.pw
 			message.init(msg,cls);
 		},
 		init: function(msg, cls) {
-			$main.append('
-				<div class="notice notice--'+cls+'" style="opacity:0;">
-			        <div class="container text-center">
-			            '+msg+'
-			        </div>
-			    </div>
-			');
+			$main.append('<div class="notice notice--'+cls+'" style="opacity:0;"><div class="container text-center">'+msg+'</div></div>');
 
 			var height_notice = $('.notice').height();
 			$('.notice').css('bottom', '-'+height_notice+'px');
@@ -444,9 +435,9 @@ if($('div').is(table)) {
 /*
 запускаем tooltip bootstrap
 ------------------------------------------------------------------ */
-	$(function () {
-        $("[data-toggle='tooltip']").tooltip();
-	});
+	// $(function () {
+     //    $("[data-toggle='tooltip']").tooltip();
+	// });
 
 });
 

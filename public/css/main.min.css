@@ -296,6 +296,11 @@ body {
 h4 {
   margin: 0 0 10px; }
 
+a.brand {
+  font-size: 20px;
+  color: #0991ac;
+}
+
 .is-locked {
   overflow: hidden; }
 
@@ -715,7 +720,7 @@ h4 {
 .content-block {
   padding: 40px 0;
   border-bottom: 2px solid #f0f0f0; }
-  .content-block:first-child {
+  .content-block { /*:first-child {  */
     border-top: 2px solid #f0f0f0; }
   @media screen and (min-width: 1600px) {
     .content-block {

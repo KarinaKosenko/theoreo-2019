@@ -10,16 +10,17 @@ class CreateBrandCategoryTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up() {
-		Schema::create( 'brand_caregory', function ( Blueprint $table ) {
-			$table->bigIncrements( 'id' );
-			$table->bigInteger( 'brand_id' )->unsigned();
-			$table->bigInteger( 'category_id' )->unsigned();
-			$table->foreign( 'brand_id' )->references( 'id' )->on( 'brands' );
-			$table->foreign( 'category_id' )->references( 'id' )->on( 'categories' );
-			$table->timestamps();
-		} );
-	}
+	public function up()
+    {
+            Schema::create('brand_category', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->bigInteger('brand_id')->unsigned();
+                $table->bigInteger('category_id')->unsigned();
+                $table->foreign('brand_id')->references('id')->on('brands');
+                $table->foreign('category_id')->references('id')->on('categories');
+                $table->timestamps();
+            });
+        }
 
 	/**
 	 * Reverse the migrations.
@@ -27,6 +28,7 @@ class CreateBrandCategoryTable extends Migration {
 	 * @return void
 	 */
 	public function down() {
-		Schema::dropIfExists( 'brand_caregory' );
+        Schema::dropIfExists( 'brand_caregory' );
+        Schema::dropIfExists( 'brand_category' );
 	}
 }
