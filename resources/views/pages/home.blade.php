@@ -7,6 +7,6 @@
             @include('widgets.action_std')
         @endforeach
      </div>
-    {{$actions->links()}}
+    @include('widgets.pagination')
 @endsection
 

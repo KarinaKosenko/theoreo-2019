@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Site;
 
-use App\Custom\Classes\ActionFilter;
+use App\Custom\Classes\{ActionFilter,SimilarActions};
 use App\Models\{
     Action, Brand, Category
 };
@@ -27,7 +27,7 @@ class ActionController extends Controller
             $actions = Category::where('code', '=', $request->category_code)->firstOrFail()
                 ->actions()->indate()
                 ->sort($request->sort ?? 'age')
-                ->get();
+                ->paginate(5);
             return view('pages.category', [
                 'actions' => $actions,
                 'category' => $request->category_code,
@@ -60,8 +60,14 @@ class ActionController extends Controller
             if ($point) {
                 $geo[] = $point;
             }
+            $similars=(new SimilarActions($action))->get();
             return view('pages.action',
-                ['action' => $action, 'geo' => $geo, 'addresses' => $addresses]);
+                [
+                    'action' => $action,
+                    'geo' => $geo,
+                    'addresses' => $addresses,
+                    'similars' => $similars,
+                ]);
         } else {
             return view('pages.404');
         }
@@ -76,7 +82,7 @@ class ActionController extends Controller
                 ->actions()
                 ->indate()
                 ->sort($request->sort ?? 'age')
-                ->get();
+                ->paginate(10);
             return view('pages.brand', [
                 'actions' => $actions,
                 'brand' => $brand,

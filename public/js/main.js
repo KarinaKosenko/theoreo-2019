@@ -1,6 +1,5 @@
 
 $(document).ready(function() {
-
 /* DELETE 16.11.2015
 *
 	function category(e) {
@@ -92,22 +91,20 @@ $(document).ready(function() {
 */
 
 
-
-
-// let $carousel = $('.carousel');
-// $carousel.owlCarousel({
-// 	pagination : false,
-// 	items : 3,
-// 	itemsCustom : false,
-// 	itemsDesktop : [1199,3],
-// 	itemsDesktopSmall : [992,3],
-// 	itemsTablet: [768,2],
-// 	itemsTabletSmall: false,
-// 	itemsMobile : [320,1],
-// 	singleItem : false,
-// 	itemsScaleUp : false,
-// 	margin: 0
-// });
+let $carousel = $('.carousel');
+$carousel.owlCarousel({
+	pagination : true,
+	items : 3,
+	itemsCustom : false,
+	itemsDesktop : [1199,3],
+	itemsDesktopSmall : [992,3],
+	itemsTablet: [768,2],
+	itemsTabletSmall: false,
+	itemsMobile : [320,1],
+	singleItem : false,
+	itemsScaleUp : false,
+	margin: 0
+});
 
 
 
