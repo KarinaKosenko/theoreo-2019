@@ -3,13 +3,13 @@
 namespace App\Parser;
 
 
+use GuzzleHttp\Client;
+
 class Vk
 {
     const API_URL = 'https://api.vk.com/method/';
 
-    const API_VERSION = '5.93';
-
-    const USER_ALBUM_IMAGE_UPLOAD_LIMIT = 5;
+    const API_VERSION = '5.92';
 
     protected static $accessToken = null;
 
@@ -39,10 +39,11 @@ class Vk
 
             if (is_null($value)) continue;
 
-            if (!in_array($camelCaseToUnderscore($property), ['photos_list']))
+            if (!in_array($camelCaseToUnderscore($property), ['photos_list'])){
                 $parameters[] = $camelCaseToUnderscore($property) . '=' . urlencode($value);
-            else
+            }else{
                 $parameters[] = $camelCaseToUnderscore($property) . '=' . $value;
+            }
         }
 
         $parameters[] = 'access_token=' . self::$accessToken;
@@ -55,7 +56,11 @@ class Vk
             exit();
         }
 
-        return json_decode(file_get_contents(self::API_URL . $method::METHOD . '?' . $parameters), true);
+        $url = self::API_URL . $method::METHOD . '?' . $parameters;
+        $client = new Client();
+        $response = $client->get($url);
+
+        return json_decode($response->getBody(), true);
     }
 
 

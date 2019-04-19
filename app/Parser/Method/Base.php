@@ -21,6 +21,7 @@ class Base
             throw new \Exception('Нет такого поля');
         }
 
+
        if( $prefix === 'get'){
            return $this->$property;
        }
