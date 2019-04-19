@@ -10,6 +10,13 @@
 @endsection
 @section('content')
     <div class="container-fluid">
+        @if(count($actions) == 0)
+            <div class="cont-flex">
+                   <h3>
+                        Акций в архиве не найдено
+                  </h3>
+            </div>
+        @endif
         @foreach($actions as $action)
             <div class="row">
                 <div class="col-sm-3">

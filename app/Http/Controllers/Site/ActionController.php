@@ -105,7 +105,7 @@ class ActionController extends Controller
     {
         $actions = Action::outdate()
             ->orderBy('date_end','desc')
-            ->paginate(5);
+            ->paginate(10);
         return view('pages.archive', ['actions' => $actions]);
     }
 }
