@@ -8,3 +8,8 @@
     display: flex;
     align-items: center;
  }
+.search-result{
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: inherit;
+}

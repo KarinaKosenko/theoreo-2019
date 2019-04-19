@@ -44,7 +44,12 @@
                 <p class="content-block__date">Срок проведения: {{my_date_format($action->date_start)}}-{{my_date_format($action->date_end)}}</p>
                 <ul class="content-block__list list-unstyled list-inline">
                     @foreach($action->tags as $tag)
-                        <li class="content-block__item"><a href="" class="btn btn-default content-block__tag">{{$tag->name}}</a></li>
+                        <li class="content-block__item">
+                            <a
+                                    href="{{route('site.action.tag',['tag_code'=>$tag->code])}}"
+                                    class="btn btn-default content-block__tag">{{$tag->name}}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
                 <div class="content-block__footer content-block__footer--offer clearfix">
