@@ -1,3 +1,10 @@
 .pagin-block{
     padding: 20px;
 }
+.footer__address{
+    text-align: center;
+}
+.footer__row {
+    display: flex;
+    align-items: center;
+ }

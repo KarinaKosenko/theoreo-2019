@@ -12,7 +12,7 @@ class ActionTagTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 25; $i++) {
+        for ($i = 1; $i <= 125; $i++) {
             $count=mt_rand(3, 6);
             for ($t = 1; $t <= $count; $t++) {
             DB::table('action_tag')->insert([

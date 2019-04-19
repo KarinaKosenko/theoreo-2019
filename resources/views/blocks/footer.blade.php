@@ -1,11 +1,20 @@
 <footer class="footer">
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-xs-24 col-sm-12">
-                    <span class="footer__copy">ООО «Рога и Копыта». © 2015 год.</span>
+            <div class="footer__row">
+                <div class="col-xs-24 col-sm-8">
+
+                    <span class="footer__copy">ООО «Рога и Копыта». © {{date('Y')}} год.</span>
+
                 </div>
-                <div class="col-xs-24 col-sm-12">
+                <div class="col-xs-24 col-sm-8">
+                    <div class="footer__address">
+                        <p><span>Саратов, ул. Бирюзовая 22</span></p>
+                        <p><span>+7 (8452) 46-56-30</span></p>
+                        <p><span><a href="{{route('site.action.archive')}}">Архив акций</a></span></p>
+                    </div>
+                </div>
+                <div class="col-xs-24 col-sm-8">
 						<span class="footer__author">
 							Дизайн сайта: 
 							<a role="link"

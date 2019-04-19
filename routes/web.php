@@ -16,4 +16,6 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/brand/{code}', 'ActionController@brand')
         ->where('code', '[a-z-]+')
         ->name('site.action.brand');
+    Route::get('/archive', 'ActionController@archive')
+        ->name('site.action.archive');
 });

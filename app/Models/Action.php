@@ -35,6 +35,10 @@ class Action extends Model
         return $query->where('date_end', '>=', date('Y-m-d'))
             ->where('date_start', '<=', date('Y-m-d H:i:s'));
     }
+    function scopeOutdate($query)
+    {
+        return $query->where('date_end', '<', date('Y-m-d'));
+    }
 
     function scopeSort($query, $sort)
     {
