@@ -26,4 +26,6 @@ Route::group(['namespace' => 'Site'], function () {
 
 
 
+    Route::get('/archive', 'ActionController@archive')
+        ->name('site.action.archive');
 });

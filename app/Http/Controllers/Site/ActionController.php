@@ -100,4 +100,12 @@ class ActionController extends Controller
         $actions = (new ActionFilter($search_text))->find();
         return view('pages.search', ['actions' => $actions, 'search_text' => $search_text]);
     }
+
+    public  function archive()
+    {
+        $actions = Action::outdate()
+            ->orderBy('date_end','desc')
+            ->paginate(10);
+        return view('pages.archive', ['actions' => $actions]);
+    }
 }

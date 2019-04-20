@@ -1,7 +1,7 @@
 <div class="row-fluid">
     <div class="top-nav clearfix">
         <div class="col-xs-24">
-            <div class="sort-category hidden-sm hidden-md hidden-lg"
+            <div class="sort-category hidden-sm hidden-md hidden-lg">
                 <div class="dropdown">
                     <a data-toggle="dropdown"
                        class="sort-category__link">
@@ -37,10 +37,11 @@
                                         <span class="sort__by"><strong>рейтингу</strong></span>
                                     @else
                                         <span class="sort__by"><strong>свежести</strong></span> или
-                                        <span><a href="{{Request::url()}}?sort=rating">рейтингу</a>
+                                        <span><a href="{{Request::url()}}?sort=rating">рейтингу</a></span>
                                     @endif
                                 </span>
             </div>
         </div>
+
     </div>
 </div>
