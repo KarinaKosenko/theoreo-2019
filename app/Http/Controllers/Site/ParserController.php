@@ -90,7 +90,7 @@ class ParserController extends Controller
 
 
      return redirect()->route('site.action.index');
-      /*return response(dump($response['response']['items']));*/
-}
+
+    }
 
 }

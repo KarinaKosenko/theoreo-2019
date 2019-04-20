@@ -12,6 +12,6 @@ class Vk_action extends Model
 
     public function vk_action_photos()
     {
-        return $this->hasOne('App\Models\Vk_action_photo');
+        return $this->hasMany('App\Models\Vk_action_photo');
     }
 }
