@@ -56,7 +56,7 @@ class Authorise
     const RESPONSE_TYPE_CODE  = 'code';
     const RESPONSE_TYPE_TOKEN = 'token';
 
-    protected $v;
+    protected $version;
 
     protected $state;
 
@@ -95,9 +95,9 @@ class Authorise
         return $this;
     }
 
-    public function setV($v)
+    public function setVersion($version)
     {
-        $this->v = $v;
+        $this->version = $version;
 
         return $this;
     }
@@ -116,7 +116,7 @@ class Authorise
         };
 
         $parameters = [];
-        foreach (['clientId', 'redirectUri', 'display', 'scope', 'responseType', 'v', 'state'] as $property) {
+        foreach (['clientId', 'redirectUri', 'display', 'scope', 'responseType', 'version', 'state'] as $property) {
             if (!is_null($this->{$property}))
                 $parameters[$camelCaseToUnderscore($property)] = is_array($this->{$property}) ? implode(',', $this->{$property}) : $this->{$property};
         }

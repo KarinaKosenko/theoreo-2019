@@ -37,8 +37,9 @@ class Vk
         $parameters = [];
         foreach ($method->getProperties() as $property => $value) {
 
-            if (is_null($value)) continue;
-
+            if (is_null($value)){
+                continue;
+            }
             if (!in_array($camelCaseToUnderscore($property), ['photos_list'])){
                 $parameters[] = $camelCaseToUnderscore($property) . '=' . urlencode($value);
             }else{

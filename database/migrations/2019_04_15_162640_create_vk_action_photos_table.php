@@ -16,7 +16,7 @@ class CreateVkActionPhotosTable extends Migration
         Schema::create('vk_action_photos', function (Blueprint $table) {
             $table->increments('id');
             $table->string( 'photo' )->nullable();
-            $table->integer( 'vk_action_id')->unsigned()->default(1);
+            $table->integer( 'vk_action_id')->unsigned();
             $table->foreign( 'vk_action_id' )->references('id')->on('vk_actions');
             $table->timestamps();
         });
