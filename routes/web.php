@@ -8,7 +8,7 @@ Route::group(['namespace' => 'Site'], function () {
         ->name('site.action.index');
     Route::get('/category/{category_code}', 'ActionController@category')
         ->name('site.action.category');
-    Route::post('/action/search','ActionController@search')
+    Route::post('/action/search', 'ActionController@search')
         ->name('site.action.search');
     Route::get('/action/{action_alias?}', 'ActionController@show')
         ->where('action_alias', '[a-z0-9-]+')
@@ -18,4 +18,7 @@ Route::group(['namespace' => 'Site'], function () {
         ->name('site.action.brand');
     Route::get('/archive', 'ActionController@archive')
         ->name('site.action.archive');
+    Route::get('/tag/{tag_code}', 'ActionController@tag')
+        ->where('tag_code', '[a-z-0-9_]+')
+        ->name('site.action.tag');
 });

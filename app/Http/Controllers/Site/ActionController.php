@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Custom\Classes\{ActionFilter,SimilarActions};
 use App\Models\{
-    Action, Brand, Category
+    Action, Brand, Category, Tag
 };
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -107,5 +107,26 @@ class ActionController extends Controller
             ->orderBy('date_end','desc')
             ->paginate(10);
         return view('pages.archive', ['actions' => $actions]);
+    }
+
+    public function tag(Request $request)
+    {
+        try {
+            $tag = Tag::where('code', '=', $request->tag_code)
+                ->firstOrFail();
+            $actions = $tag->where('code', '=', $request->tag_code)->firstOrFail()
+                ->actions()
+                ->indate()
+                ->sort($request->sort ?? 'age')
+                ->paginate(10);
+            return view('pages.tag', [
+                'actions' => $actions,
+                'tag' => $tag,
+                'sort' => $request->sort ?? 'age',
+            ]);
+
+        } catch (ModelNotFoundException $e) {
+            return view('pages.404');
+        }
     }
 }
