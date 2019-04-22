@@ -16,6 +16,16 @@ Route::group(['namespace' => 'Site'], function () {
     Route::get('/brand/{code}', 'ActionController@brand')
         ->where('code', '[a-z-]+')
         ->name('site.action.brand');
+
+
+        Route::get('/vk_token', 'ParserController@generateToken');
+        Route::get('/vk_newsfeed', 'ParserController@vkNewsfeedGet');
+
+
+
+
+
+
     Route::get('/archive', 'ActionController@archive')
         ->name('site.action.archive');
     Route::get('/tag/{tag_code}', 'ActionController@tag')
