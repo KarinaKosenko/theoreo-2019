@@ -23,11 +23,8 @@ Route::middleware(['auth', 'can:adminPanel,App\Models\User','error.session'])
     ->group(function () {
 
     Route::get('/', 'MainController@index')->name('admin.main.index');
-    Route::resources(
-        [
-            'brands' => 'BrandController',
-        ]
-    );
+    Route::resource('brands', 'BrandController')
+        ->middleware('can:brands,App\Models\User');
 
 
 });

@@ -17,11 +17,6 @@
 
                 <div class="col-xs-12">
                     <div class="box">
-                        {{--<div class="box-header">--}}
-                            {{--<h3 class="box-title">Data Table With Full Features</h3>--}}
-                        {{--</div>--}}
-
-
                             <div class="row">
                                 <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
                                     <a
@@ -52,10 +47,15 @@
                                 @foreach($brands as $brand)
                                     <tr>
                                     <td>{{$brand->id}}</td>
-                                    <td>{{$brand->name}}</td>
+                                    <td><a href="{{ route('brands.show',['brand'=>$brand->id]) }}">{{$brand->name}}</a></td>
                                     <td>{{$brand->created_at}}</td>
                                     <td>{{$brand->updated_at}}</td>
                                     <td>
+                                        <a class="btn btn-default"
+                                           href="{{ route('brands.show',['brand' => $brand->id]) }}"
+                                        >
+                                            <i class="fa fa-eye"></i>
+                                        </a>
 
                                         <a class="btn btn-default"
                                            href="{{ route('brands.edit',['brand' => $brand->id]) }}"

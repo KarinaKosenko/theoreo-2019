@@ -6,11 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\{
     AddBrand, EditBrand
 };
-use App\Models\{Brand,Category};
+use App\Models\{
+    Brand, Category
+};
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Redirect,Session};
+use Illuminate\Support\Facades\{
+    Redirect, Session
+};
 
 class BrandController extends Controller
 {
@@ -18,11 +22,7 @@ class BrandController extends Controller
     protected $folderPath = 'admin.pages.brands.';
     const QUERY_EXCEPTION_READABLE_MESSAGE = 2;
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $brands = Brand::orderBy('name', 'asc')->get();
@@ -32,11 +32,6 @@ class BrandController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $categories = Category::all();
@@ -45,22 +40,13 @@ class BrandController extends Controller
 
     public function store(AddBrand $request)
     {
-        $brand_data = [
-            'name' => $request->name,
-            'code' => $request->name,
-            'img' => $request->img,
-            'site_url' => $request->site_url,
-            'vk_url' => $request->vk_url,
-            'phone' => $request->phone,
-            'sell_address' => $request->sell_address,
-        ];
+        $request->merge(['code' => $request->name]);
         $categories = $request->categories;
-
         /**
-         * @param \App\Models\Brand $brand
+         * @var Brand $brand
          */
         try {
-            $brand = Brand::create($brand_data);
+            $brand = Brand::create($request->except('categories'));
             $brand->categories()->attach($categories);
             $message = 'Добавление выполнено успешно!';
         } catch (QueryException $exception) {
@@ -71,76 +57,57 @@ class BrandController extends Controller
         return Redirect::to(route($this->name . 'index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ $brand
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Brand $brand)
+
+    public function show($id)
     {
-        //
+        $brand = Brand::with(['categories'])->findOrFail($id);
+        return view($this->folderPath . 'show', ['brand' => $brand]);
     }
 
 
     public function edit($id)
     {
-        try {
-            $brand = Brand::findOrFail($id);
-            $brand_catId = $brand->categories()->allRelatedIds()->toArray();
-            $categories = Category::all();
-            return view($this->folderPath . 'edit', [
-                'brand' => $brand,
-                'categories' => $categories,
-                'brand_catId' => $brand_catId,
-            ]);
-        } catch (ModelNotFoundException $e) {
-
-            return false;
-        }
-
+        $brand = Brand::findOrFail($id);
+        $brand_catId = $brand->categories()->allRelatedIds()->toArray();
+        $categories = Category::all();
+        return view($this->folderPath . 'edit', [
+            'brand' => $brand,
+            'categories' => $categories,
+            'brand_catId' => $brand_catId,
+        ]);
     }
 
     public function update(EditBrand $request, $id)
     {
-        $brand_data = [
-            'name' => $request->name,
-            'code' => $request->name,
-            'img' => $request->img,
-            'site_url' => $request->site_url,
-            'vk_url' => $request->vk_url,
-            'phone' => $request->phone,
-            'sell_address' => $request->sell_address,
-        ];
+        $request->merge(['code' => $request->name]);
         $categories = $request->categories;
+        /** @var Brand $brand */
+        $brand = Brand::findOrFail($id);
         try {
-            /** @var Brand $brand */
-            $brand = Brand::findOrFail($id);
-            $brand->update($brand_data);
+            $brand->update($request->except(['categories', 'current_id']));
             $brand->categories()->sync($categories);
             $message = 'Обновление выполнено успешно!';
-        } catch (ModelNotFoundException $e) {
-            $message = $e->getMessage();
+            $request->session()->flash('message', $message);
+        } catch (QueryException $exception) {
+            $message = $exception->errorInfo[self::QUERY_EXCEPTION_READABLE_MESSAGE];
         }
-        $request->session()->flash('message', $message);
         return Redirect::to(route($this->name . 'index'));
     }
 
 
     public function destroy($id)
     {
+        $brand = Brand::findOrFail($id);
         try {
-            $brand = Brand::findOrFail( $id );
             $brand->categories()->detach();
             $brand->delete();
             $message = 'Удаление выполнено успешно!';
-        } catch ( QueryException $exception ) {
-            $message = $exception->errorInfo[ self::QUERY_EXCEPTION_READABLE_MESSAGE ];
+        } catch (QueryException $exception) {
+            $message = $exception->errorInfo[self::QUERY_EXCEPTION_READABLE_MESSAGE];
         }
 
-        Session::flash( 'message', $message );
+        Session::flash('message', $message);
 
-        return Redirect::to( route( $this->name . 'index' ) );
-
+        return Redirect::to(route($this->name . 'index'));
     }
 }

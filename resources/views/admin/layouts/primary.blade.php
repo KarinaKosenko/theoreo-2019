@@ -22,15 +22,10 @@
 @push('app_scripts')
     <script src="{{ admin_asset('js/adminlte.min.js') }}"></script>
     <script src="{{ admin_asset('jquery/jquery.min.js')}}"></script>
-    <!-- Bootstrap 3.3.7 -->
     <script src="{{ admin_asset('bootstrap/js/bootstrap.min.js')}}"></script>
-    <!-- DataTables -->
     <script src="{{ admin_asset('jquery/jquery.dataTables.min.js')}}"></script>
     <script src="{{ admin_asset('bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
-    <!-- SlimScroll -->
     <script src="{{ admin_asset('jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-    <!-- FastClick -->
     <script src="{{ admin_asset('fastclick/lib/fastclick.js')}}"></script>
-
     <script src="{{ admin_asset('js/demo.js')}}"></script>
 @endpush
