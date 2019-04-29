@@ -1,0 +1,11 @@
+.div-inline{
+    display: inline-block;
+}
+
+#logo{
+    max-width: 300px;
+}
+.my-header{
+    padding: 10px;
+    margin: 10px;
+}

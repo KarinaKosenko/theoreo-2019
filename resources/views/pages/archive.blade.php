@@ -21,7 +21,6 @@
         @endif
         @foreach($actions as $action)
                 @include('widgets.action_short')
-            <hr>
         @endforeach
     </div>
     @include('widgets.pagination')

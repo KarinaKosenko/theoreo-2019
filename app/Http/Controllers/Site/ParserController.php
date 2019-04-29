@@ -30,7 +30,7 @@ class ParserController extends Controller
                     Authorise::SCOPE_OFFLINE
                 ]
             )
-            ->setV(5.92);
+            ->setVersion(5.92);
 
         $str = $vkAuht->getAuthorizeUrl();
 
