@@ -19,14 +19,16 @@ Route::get('/register', function () {
     ]);
 })->name('admin.auth.register');
 
-Route::middleware(['auth', 'can:adminPanel,App\Models\User','error.session'])
+Route::middleware(['auth', 'can:adminPanel,App\Models\User', 'error.session'])
     ->group(function () {
 
     Route::get('/', 'MainController@index')->name('admin.main.index');
     Route::resource('brands', 'BrandController')
         ->middleware('can:brands,App\Models\User');
+    Route::resource('actions', 'ActionController')
+        ->middleware('can:actions,App\Models\User');
 
 
-});
+    });
 
 

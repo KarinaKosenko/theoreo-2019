@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
+use App\Models\{Brand,Category};
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,8 +26,20 @@ class AppServiceProvider extends ServiceProvider
                 'categories' => $categories
             ]);
         }
-
         );
+
+        View::composer(
+            ['admin.parts.action_form'], function ($view) {
+            $categories = Category::all();
+            $brands=Brand::all();
+            $view->with([
+                'categories' => $categories,
+                'brands' => $brands,
+            ]);
+        }
+        );
+
+
         View::share(['sort' =>'age']);
     }
 

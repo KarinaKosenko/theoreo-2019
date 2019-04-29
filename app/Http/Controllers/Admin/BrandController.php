@@ -26,7 +26,6 @@ class BrandController extends Controller
     public function index()
     {
         $brands = Brand::orderBy('name', 'asc')->get();
-        //dump($brands);
         return view($this->folderPath . 'index', [
             'brands' => $brands,
         ]);

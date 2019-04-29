@@ -5,6 +5,7 @@
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="{{ admin_asset('css/skins/skin-blue.min.css') }}">
     <link rel="stylesheet" href="{{ admin_asset('bootstrap/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ admin_asset('bootstrap/css/bootstrap-datepicker.min.css')}}">
     <link rel="stylesheet" href="{{ admin_asset('font-awesome/css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{ admin_asset('Ionicons/css/ionicons.min.css')}}">
     <link rel="stylesheet" href="{{ admin_asset('datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
@@ -20,10 +21,12 @@
 </div>
 @endsection
 @push('app_scripts')
+    <script src="{{ admin_asset('bootstrap/js/bootstrap-datepicker.js')}}"></script>
     <script src="{{ admin_asset('js/adminlte.min.js') }}"></script>
     <script src="{{ admin_asset('jquery/jquery.min.js')}}"></script>
     <script src="{{ admin_asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{ admin_asset('jquery/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ admin_asset('jquery/jquery-ui.js')}}"></script>
     <script src="{{ admin_asset('bootstrap/js/dataTables.bootstrap.min.js')}}"></script>
     <script src="{{ admin_asset('jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
     <script src="{{ admin_asset('fastclick/lib/fastclick.js')}}"></script>
