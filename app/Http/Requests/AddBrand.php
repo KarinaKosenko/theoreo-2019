@@ -23,7 +23,6 @@ class AddBrand extends FormRequest
             'phone' => ['nullable','regex:/^((\+7|8)[0-9\-\(\)\s]+[,]?[ ]?)+/'],
             'sell_address' => 'nullable|min:4',
             'categories' => 'required|min:1|array',
-
         ];
     }
 }

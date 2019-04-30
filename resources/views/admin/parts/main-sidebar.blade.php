@@ -33,7 +33,10 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
             @can('brands',App\Models\User::class)
-            <li><a href="{{route('brands.index')}}"><i class="fa fa-link"></i> <span>Управление брендами</span></a></li>
+                <li><a href="{{route('brands.index')}}"><i class="fa fa-link"></i> <span>Управление брендами</span></a></li>
+            @endcan
+            @can('actions',App\Models\User::class)
+                <li><a href="{{route('actions.index')}}"><i class="fa fa-link"></i> <span>Управление акциями</span></a></li>
             @endcan
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>

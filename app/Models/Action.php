@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Action extends Model
 {
-    protected $guarded = ['id', 'code', 'created_at', 'updated_at', 'deleted_at'];
+    protected $guarded = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     protected $with = ['tags', 'brand', 'category'];
 
@@ -47,5 +48,20 @@ class Action extends Model
             $field = 'rating';
         }
         return $query->orderBy($field, 'DESC');
+    }
+
+    public function setCodeAttribute($value)
+    {
+        $this->attributes['code'] = Str::slug($value);
+    }
+
+    public function setDateStartAttribute($value)
+    {
+        $this->attributes['date_start'] = date('Y-m-d',strtotime($value));
+    }
+
+    public function setDateEndAttribute($value)
+    {
+        $this->attributes['date_end'] = date('Y-m-d',strtotime($value));
     }
 }

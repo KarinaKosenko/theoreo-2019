@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\{
+    Tag, Action
+};
 use \GuzzleHttp\Client;
 use Illuminate\Support\Str;
 
@@ -39,5 +42,27 @@ function get_geoposition($address)
     $geo['lng'] = $c[0];
     $geo['address'] = $address;
     return $geo;
+}
+
+function tags_from_string($tags)
+{
+    $tags_id = [];
+    foreach ($tags as $name) {
+        if (trim($name) != '') {
+            $tag = Tag::where('name', trim($name))
+                ->firstOrCreate(['name' => trim($name)], ['code' => trim($name)]);
+            $tags_id[] = $tag->id;
+        }
+    }
+    return $tags_id;
+}
+
+function tag_names_from_action(Action $action)
+{
+    $action_tags = [];
+    foreach ($action->tags as $tag) {
+        $action_tags[] = $tag->name;
+    }
+    return $action_tags;
 }
 
