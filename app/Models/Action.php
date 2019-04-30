@@ -54,4 +54,14 @@ class Action extends Model
     {
         $this->attributes['code'] = Str::slug($value);
     }
+
+    public function setDateStartAttribute($value)
+    {
+        $this->attributes['date_start'] = date('Y-m-d',strtotime($value));
+    }
+
+    public function setDateEndAttribute($value)
+    {
+        $this->attributes['date_end'] = date('Y-m-d',strtotime($value));
+    }
 }

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Models\{Brand,Category};
+use App\Models\{
+    Brand, Category, Tag
+};
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,10 +33,16 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             ['admin.parts.action_form'], function ($view) {
             $categories = Category::all();
+            $tags=Tag::all();
             $brands=Brand::all();
+            $tag_names=[];
+            foreach ($tags as $tag){
+                $tag_names[]=$tag->name;
+            }
             $view->with([
                 'categories' => $categories,
                 'brands' => $brands,
+                'tag_names' => $tag_names,
             ]);
         }
         );

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ActionRequest;
+use App\Http\Requests\{
+    AddAction, EditAction
+};
 use App\Models\{
     Action, Tag
 };
@@ -21,7 +23,7 @@ class ActionController extends Controller
 
     public function index()
     {
-        $actions = Action::orderBy('created_at', 'asc')->get();
+        $actions = Action::orderBy('created_at', 'desc')->get();
         return view($this->folderPath . 'index', [
             'actions' => $actions,
         ]);
@@ -32,12 +34,11 @@ class ActionController extends Controller
         return view($this->folderPath . 'create');
     }
 
-    public function store(ActionRequest $request)
+    public function store(AddAction $request)
     {
         $tags = tags_from_string($request->tags);
         $request->merge(['code' => $request->title]);
         $request->merge(['rating' => '0']);
-        /** @var Action $action */
         try {
             $action = Action::create($request->except('tags'));
             $action->tags()->attach($tags);
@@ -59,23 +60,25 @@ class ActionController extends Controller
 
     public function edit($id)
     {
+        /** @var Action $action */
         $action = Action::findOrFail($id);
-        $tags = tags_to_string($action->tags);
+        $action_tags = tag_names_from_action($action);
         return view($this->folderPath . 'edit', [
-            'action' => $action, 'tags' => $tags,
+            'action' => $action, 'action_tags' => $action_tags,
         ]);
     }
 
 
-    public function update(ActionRequest $request, $id)
+    public function update(EditAction $request, $id)
     {
         $request->merge(['code' => $request->name]);
-        $tags = tags_from_string($request->tags);
+
+        $tags_id = tags_from_string($request->tags);
         /** @var Action $action */
         $action = Action::findOrFail($id);
         try {
-            $action->update($request->except(['current_id','tags']));
-            $action->tags()->sync($tags);
+            $action->update($request->except(['current_id', 'tags']));
+            $action->tags()->sync($tags_id);
             $message = 'Обновление выполнено успешно!';
             $request->session()->flash('message', $message);
         } catch (QueryException $exception) {

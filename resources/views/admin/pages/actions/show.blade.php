@@ -1,15 +1,23 @@
 @extends('admin.layouts.primary')
 @section('content')
-<div class="wrapper">
-    <div class="content-wrapper">
-        <div class="box box-primary">
-
-            <div class="row">
-                <div>
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <section class="content-header">
+                <h1>Просмотр акции</h1>
+                <ol class="breadcrumb">
+                    <li><a href="{{route('admin.main.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="{{route('actions.index')}}"><i class="fa fa-list"></i> Управление акциями</a></li>
+                    <li class="active">Просмотр</li>
+                </ol>
+            </section>
+            <section class="content">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
                     <h1 class="my-header">{{$action->title}}<br>
                         <small>{{ $action->brand->name }}</small></h1>
                     <hr>
                 </div>
+                    <div class="row">
                 <div class="col-sm-12 col-sm-6 col-sm-push-6">
                     <img src="{{ $action->img }}" alt="" id="logo">
                 </div>
@@ -73,14 +81,15 @@
                         <div class="box-header with-border">{{ $action->updated_at }}</div>
                     </div>
 
-                </div>
+                </div></div>
 
-            </div>
+
             <div class="container">
                 <a href="{{ route('actions.index') }}" class="btn btn-success">К списку</a>
             </div>
-
+                </div>
+            </section>
         </div>
     </div>
-</div>
+
 @endsection

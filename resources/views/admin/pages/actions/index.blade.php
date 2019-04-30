@@ -3,9 +3,7 @@
 <div class="wrapper">
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>
-                Список акций
-            </h1>
+            <h1>Список акций</h1>
             <ol class="breadcrumb">
                 <li><a href="{{route('admin.main.index')}}"><i class="fa fa-dashboard"></i> Home</a></li>
                 <li class="active">Управление акциями</li>
@@ -32,7 +30,8 @@
                     @endif
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <table id="table-brands" class="table table-bordered table-striped">
+                            <table id="table-brands"
+                                   class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
@@ -123,7 +122,8 @@
                 'searching'   : true,
                 'ordering'    : true,
                 'info'        : true,
-                'autoWidth'   : true
+                'autoWidth'   : true,
+                'order'       : [[4,'desc']],
             });
         })
     </script>
