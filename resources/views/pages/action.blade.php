@@ -24,7 +24,7 @@
 @section('content')
     <div class="row-fluid">
         <article role="article" class="content-block clearfix">
-            <div class="sidebar col-xs-24 col-sm-8">
+            <div class="sidebar col-xs-24 col-sm-6">
                 <div class="sidebar__item">
                     <div class="sidebar__img">
                         <img src="{{$action->img}}" alt="" class="img-responsive">
@@ -36,7 +36,7 @@
                     </strong>
                 </div>
             </div>
-            <div class="col-xs-24 col-sm-16">
+            <div class="col-xs-24 col-sm-18">
                 <div class="content-block__heading">
                     <h1>{{$action->title}}</h1>
                 </div>
