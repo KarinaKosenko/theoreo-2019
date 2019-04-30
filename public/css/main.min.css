@@ -1217,14 +1217,14 @@ PAGE
       border: 0; } }
 
 .sidebar__item {
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+}
 
 .sidebar__img { 
   border-radius: 5px;
   overflow: hidden;
   max-width: 250px;
-  max-height: 350px;
-}
+ }
   /*.sidebar__img img {
     width: 100%; }*/
 
@@ -1495,9 +1495,7 @@ PAGE
         vertical-align: top; } }
 
 .owl-images {
-  max-width: 250px;
-  max-height: 350px;
-  /*width: 100%;*/ }
+  max-width: 250px;}
 
 .owl-item {
   padding-left: 10px;
